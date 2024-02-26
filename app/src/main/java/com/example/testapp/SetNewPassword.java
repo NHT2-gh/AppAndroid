@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
 public class SetNewPassword extends AppCompatActivity {
-    TextView linkSignUp;
+    Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,21 +19,21 @@ public class SetNewPassword extends AppCompatActivity {
 
     }
     private void setControl() {
-        linkSignUp = findViewById(R.id.tvLinkSignup);
+        btnLogin = findViewById(R.id.btnLogin);
 
     }
     private void setEvent() {
-        linkSignUp.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivitySignup();
+                openActivityHome();
             }
 
         });
 
     }
-    private void openActivitySignup() {
-        Intent intent = new Intent(this, RegistrationActivity.class);
+    private void openActivityHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 

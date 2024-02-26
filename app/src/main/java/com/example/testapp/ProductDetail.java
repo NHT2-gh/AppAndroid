@@ -13,10 +13,5 @@ public class ProductDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Actionbar toolbarFragment = new Actionbar();
-        fragmentTransaction.replace(R.id.toolbar_container, toolbarFragment);
-        fragmentTransaction.commit();
     }
 }

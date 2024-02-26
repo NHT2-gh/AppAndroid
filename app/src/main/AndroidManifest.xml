@@ -15,14 +15,26 @@
             android:exported="false" />
         <activity
             android:name=".ProductDetail"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Actionbar"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SetNewPassword"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
-            android:exported="true" />
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

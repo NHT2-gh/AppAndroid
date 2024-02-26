@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="statusBarColor">#454545</color>
+<!--    background color-->
+    <color name="bgColor_l1">#131313</color>
+    <color name="bgColor_l2">#313131</color>
+    <color name="bgColor_l3">#F9F9F9</color>
+<!--    main color-->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="mainColor">#FFC67C4E</color>
+    <color name="darkGrey">#313131</color>
+    <color name="lightGrey">#D4D4D4</color>
+<!--    text color-->
+    <color name="smallTextColor">#FFA9A9A9</color>
+    <color name="priceTextColor">#2F4B4E</color>
+    <color name="TextLightColor">#313131</color>
+</resources>

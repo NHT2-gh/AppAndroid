@@ -68,7 +68,7 @@
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="420dp"
         android:background="@drawable/style_button"
         android:textColor="@color/white"
         android:textStyle="bold"

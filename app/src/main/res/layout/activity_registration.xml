@@ -90,14 +90,14 @@
         android:layout_height="50dp"
         android:text="Đăng ký"
         android:background="@drawable/style_button"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="300dp"
         android:textSize="18dp"
         />
     <TextView
         android:id="@+id/tvLinkLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Đăng nhập"
+        android:text="Bạn đã có tài khoản ?"
         android:layout_marginTop="7dp"
         android:textAlignment="center"
         android:textStyle="italic"

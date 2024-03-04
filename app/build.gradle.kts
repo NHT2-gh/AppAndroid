@@ -32,11 +32,16 @@ android {
 }
 
 dependencies {
-//    implementation ("com.android.support:design:28.0.0")
+    //show more
+    implementation("com.borjabravo:readmoretextview:2.1.0")
+    //load img
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
+
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("com.google.android.material:material:1.8.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
-
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

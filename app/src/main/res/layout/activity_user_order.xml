@@ -54,6 +54,8 @@
                         android:textSize="16sp"
                         android:textAllCaps="false"/>
                     <Button
+
+
                         android:layout_width="170dp"
                         android:layout_height="wrap_content"
                         android:text="Pick Up"
@@ -128,18 +130,19 @@
                     android:id="@+id/btn_showListCoupon"
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:drawableStart="@drawable/icon_discount"
                     android:drawableEnd="@drawable/icon_arrow_right_24"
                     android:text="Chưa áp dụng mã giảm giá"
                     android:textAllCaps="false"
                     android:backgroundTint="@color/white"
-                    android:textSize="14sp"
-                    android:paddingHorizontal="20dp">
+                    android:textSize="16sp"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp">
                 </Button>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="horizontal"
                     android:gravity="center"
                     android:layout_marginVertical="10dp">
@@ -152,7 +155,7 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="Sử dụng 5000 điểm"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="35dp"
                         android:textColor="@color/TextLightColor"/>
                     <Switch
                         android:id="@+id/sw_usePoint"
@@ -176,34 +179,37 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_gravity="center">
+                            android:layout_gravity="center"
+                            android:paddingVertical="5dp">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Giá"
-                                android:layout_marginRight="200dp"/>
+                                />
 
                             <TextView
                                 android:id="@+id/tv_productPrice"
-                                android:layout_width="130dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="right"
                                 android:text="45.000 VND" />
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_gravity="center">
+                            android:layout_gravity="center"
+                            android:paddingVertical="5dp">>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Phí vận chuyển"
-                                android:layout_marginRight="120dp"/>
+                                android:text="Phí vận chuyển"/>
 
                             <TextView
                                 android:id="@+id/tv_freightCost"
-                                android:layout_width="130dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="right"
                                 android:text="15.000 VND" />
                         </LinearLayout>
 
@@ -227,9 +233,10 @@
 
                     <TextView
                         android:id="@+id/tv_totalPrice"
-                        android:layout_width="130dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="60.000 VND"
+                        android:gravity="right"
                         android:textStyle="bold"/>
                 </LinearLayout>
             </LinearLayout>
@@ -265,6 +272,7 @@
             </LinearLayout>
             <Button
                     android:id="@+id/btn_buyNow"
+                    android:layout_margin="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_add_cart"

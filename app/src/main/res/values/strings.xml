@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Highlands</string>
     <string name="plus_icon">+</string>
+
+    <string name="read_more">Show more</string>
+    <string name="read_less">Show less</string>
 </resources>

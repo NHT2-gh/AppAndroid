@@ -5,6 +5,10 @@
     <color name="bgColor_l1">#FF131313</color>
     <color name="bgColor_l2">#FF313131</color>
     <color name="bgColor_l3">#F9F9F9</color>
+<!--    bgColor main-->
+    <color name="bgMain_color1">#321711</color>
+    <color name="bgMain_color2">#0C0602</color>
+    <color name="bgMain_color3">#251408</color>
 <!--    main color-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
@@ -15,4 +19,5 @@
     <color name="smallTextColor">#FFA9A9A9</color>
     <color name="priceTextColor">#FF2F4B4E</color>
     <color name="TextLightColor">#FF313131</color>
+
 </resources>

@@ -29,8 +29,9 @@
         app:hintTextColor="@color/black"
         android:layout_marginBottom="15dp" >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_fullName"
             android:layout_width="match_parent"
-            android:inputType="phone"
+            android:inputType="text"
             android:layout_height="60dp"
             android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -44,11 +45,28 @@
         app:hintTextColor="@color/black"
         android:layout_marginBottom="15dp" >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:inputType="phone"
             android:layout_height="60dp"
             android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:hint="Nhập email"-->
+<!--        android:textColorHint="@color/smallTextColor"-->
+<!--        app:hintTextColor="@color/black"-->
+<!--        android:layout_marginBottom="15dp" >-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:inputType="text"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:padding="10dp" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -60,6 +78,7 @@
         app:hintTextColor="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:inputType="textPassword"
             android:layout_height="60dp"
@@ -77,33 +96,48 @@
         android:textColorHint="@color/smallTextColor"
         app:hintTextColor="@color/black">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_rePassword"
             android:layout_width="match_parent"
             android:inputType="textPassword"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Đăng ký"
-        android:background="@drawable/style_button"
-        android:layout_marginTop="300dp"
-        android:textSize="18dp"
-        />
-    <TextView
-        android:id="@+id/tvLinkLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Bạn đã có tài khoản ?"
-        android:layout_marginTop="7dp"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        android:textColor="@color/mainColor"
-        android:textSize="20dp"
-        >
-    </TextView>
+        </TextView>
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Đăng ký"
+            android:textAllCaps="false"
+            android:background="@drawable/style_button"
+            android:layout_marginTop="280dp"
+            android:textSize="18dp"
+            />
+        <TextView
+            android:id="@+id/tvLinkLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bạn đã có tài khoản ?"
+            android:layout_marginTop="7dp"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:textColor="@color/mainColor"
+            android:textSize="16dp"
+            >
+        </TextView>
+    </LinearLayout>
+
+
 
 </LinearLayout>

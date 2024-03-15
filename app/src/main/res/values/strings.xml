@@ -2,6 +2,9 @@
     <string name="app_name">Highlands</string>
     <string name="plus_icon">+</string>
 
-    <string name="read_more">Show more</string>
-    <string name="read_less">Show less</string>
+    <string name="read_more">Xem thêm</string>
+    <string name="read_less">Rút gọn</string>
+
+    <string name="receive_the_otp">Bạn không nhận được mã ?</string>
+    <string name="resendOtp">Gửi lại</string>
 </resources>

@@ -15,6 +15,7 @@
     <color name="mainColor">#FFC67C4E</color>
     <color name="darkGrey">#FF313131</color>
     <color name="lightGrey">#FFD4D4D4</color>
+    <color name="red">#FF0000</color>
 <!--    text color-->
     <color name="smallTextColor">#FFA9A9A9</color>
     <color name="priceTextColor">#FF2F4B4E</color>

@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id ("com.google.gms.google-services")
 }
 
 android {
@@ -32,6 +33,14 @@ android {
 }
 
 dependencies {
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
+    implementation("com.google.firebase:firebase-auth")
+    //call API
+    implementation ("com.squareup.retrofit2:retrofit:2.1.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.1.0") //convert JSON => Oject
+    //Oject => JSON
+    implementation ("com.google.code.gson:gson:2.10.1")
     //show more
     implementation("com.borjabravo:readmoretextview:2.1.0")
     //load img

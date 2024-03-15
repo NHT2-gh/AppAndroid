@@ -1,14 +1,14 @@
 package com.example.testapp.model;
 
-public class Products {
-    private String id, name;
-    private int price, img;
+public class Product {
+    private String id, name, img;
+    private int price;
 
 
-    public Products() {
+    public Product() {
     }
 
-    public Products(String id, String name, int price, int img) {
+    public Product(String id, String name, int price, String img) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -27,11 +27,11 @@ public class Products {
         return name;
     }
 
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

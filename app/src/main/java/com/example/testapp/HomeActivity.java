@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import com.example.testapp.adapter.ProductAdapter;
-import com.example.testapp.model.Products;
+import com.example.testapp.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
-    private List<Products> data = new ArrayList<>();
+    private List<Product> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +35,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void Khoitao() {
-        data.add(new Products("1", "PHINCHOCO", 45000, R.drawable.img_product));
-        data.add(new Products("2", "Choco2", 45000, R.drawable.img_product));
-        data.add(new Products("3", "PHINCHOCO", 45000, R.drawable.img_product));
-        data.add(new Products("4", "PHINCHOCO", 45000, R.drawable.img_product));
+        data.add(new Product("1", "PHINCHOCO", 45000, "https://firebasestorage.googleapis.com/v0/b/image-highland-6ae35.appspot.com/o/6f6eeda1-8ba1-4632-988f-4fa1b20c98bdjpg?alt=media"));
+        data.add(new Product("2", "Choco2", 45000, "https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/HLC_New_logo_5.1_Products__FREEZE_TRA_XANH.jpg"));
+        data.add(new Product("3", "PHINCHOCO", 45000, "https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/HLC_New_logo_5.1_Products__FREEZE_TRA_XANH.jpg"));
+        data.add(new Product("4", "PHINCHOCO", 45000, "https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/HLC_New_logo_5.1_Products__FREEZE_TRA_XANH.jpg"));
     }
 
     private void setControl() {

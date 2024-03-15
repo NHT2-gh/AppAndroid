@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.testapp.R;
-import com.example.testapp.model.Products;
+import com.example.testapp.model.Product;
 
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
     private LayoutInflater mInflater;
-    private List<Products> listProducts;
+    private List<Product> listProducts;
 
-        public ProductAdapter(Context context, List<Products> listProducts) {
+        public ProductAdapter(Context context, List<Product> listProducts) {
             this.mInflater = LayoutInflater.from(context);
             this.listProducts = listProducts;
         }
@@ -47,7 +47,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Products products = listProducts.get(position);
+        Product products = listProducts.get(position);
         holder.tvName.setText(products.getName());
         holder.tvPrice.setText(String.valueOf(products.getPrice())); // Convert giá thành chuỗi
         Glide.with(holder.itemView.getContext())

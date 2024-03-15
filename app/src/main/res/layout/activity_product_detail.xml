@@ -30,157 +30,177 @@
                 </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.appbar.AppBarLayout>
         </FrameLayout>
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="?attr/actionBarSize">
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_marginBottom="100dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="20dp">
+
                 <ImageView
                     android:id="@+id/img_product"
                     android:layout_width="280dp"
                     android:layout_height="280dp"
-                    android:layout_gravity = "center"
-                    android:background="@drawable/img_detail"/>
+                    android:layout_gravity="center"
+                    android:background="@drawable/img_detail" />
+
                 <TextView
                     android:id="@+id/tv_productName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="PHINDI CHOCO"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal"
-                    android:paddingVertical="5dp"
-                    >
+                    android:paddingVertical="5dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/icon_start_24"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:background="@drawable/icon_start_24" />
+
                     <TextView
                         android:id="@+id/tv_productEvalu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="7dp"
                         android:text="4.8"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
                         android:textSize="18sp"
-                        android:layout_marginHorizontal="7dp"
-                        android:layout_gravity="center"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/tv_envaluNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="(5)"
                         android:textColor="@color/smallTextColor"
-                        android:layout_gravity="center"
-                        android:textSize="17sp"/>
+                        android:textSize="17sp" />
+
                     <ImageButton
                         android:id="@+id/imgbtn_category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/icon_caphe"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="220dp"/>
+                        android:layout_marginLeft="220dp"
+                        android:background="@drawable/icon_caphe" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mô tả"
-                        android:textStyle="bold"
                         android:textSize="18sp"
-                        />
+                        android:textStyle="bold" />
+
                     <com.borjabravo.readmoretextview.ReadMoreTextView
                         android:id="@+id/text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="This is decs adsdkljasldkjaskldjasdkljaldjaskd "
-                        app:trimExpandedText="@string/read_less"
-                        app:trimCollapsedText="@string/read_more"
-                        app:trimMode="trimModeLength"
-                        app:trimLength="25"
-                        app:colorClickableText="@color/mainColor"
+                        android:text="desc"
                         android:textStyle="bold"
-                        />
+                        app:colorClickableText="@color/mainColor"
+                        app:trimCollapsedText="@string/read_more"
+                        app:trimExpandedText="@string/read_less"
+                        app:trimLength="25"
+                        android:textSize="16sp"
+                        app:trimMode="trimModeLength" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="20dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Size"
-                        android:textStyle="bold"
                         android:textSize="18sp"
-                        />
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:layout_marginTop="10dp">
+                        android:orientation="horizontal">
 
                         <Button
                             android:id="@+id/btn_sizeS"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="S"
-                            app:backgroundTint="@null"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
                             android:background="@drawable/style_btn_size"
-                            />
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:backgroundTint="@null" />
+
                         <Button
                             android:id="@+id/btn_sizeM"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="M"
-                            app:backgroundTint="@null"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
+                            android:layout_marginHorizontal="30dp"
                             android:background="@drawable/style_btn_size"
-                            android:layout_marginHorizontal="30dp" />
+                            android:text="M"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:backgroundTint="@null" />
+
                         <Button
                             android:id="@+id/btn_sizeL"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:backgroundTint="@null"
-                            android:text="L"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
                             android:background="@drawable/style_btn_size"
-                            />
+                            android:text="L"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:backgroundTint="@null" />
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:layout_height="300dp"
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
                         android:text="Topping"
-                        android:textStyle="bold"
                         android:textSize="18sp"
-                        />
-                    <ListView
+                        android:textStyle="bold" />
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="match_parent">
+                        <ListView
+                            android:id="@+id/lv_toppingList"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:divider="@android:color/transparent"
+                            android:dividerHeight="10dp"/>
+                    </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

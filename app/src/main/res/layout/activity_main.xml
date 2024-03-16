@@ -1,60 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    >
-    <ScrollView
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_main" />
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_main"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="520dp"
-                android:fontFamily="@font/sora_regular"
-                android:paddingLeft="40dp"
-                android:paddingRight="40dp"
-                android:text="Tự hào sinh ra từ đất Việt"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="35dp"
-                android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:fontFamily="@font/sora_regular"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="Tự hào sinh ra từ đất Việt"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="35dp"
+        android:textStyle="bold" />
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="660dp"
-                android:fontFamily="@font/sora_regular"
-                android:paddingLeft="40dp"
-                android:paddingRight="40dp"
-                android:text="Highlands Coffee được thành lập vào nằm 1999"
-                android:textAlignment="center"
-                android:textColor="@color/smallTextColor"
-                android:textSize="18dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="620dp"
+        android:fontFamily="@font/sora_regular"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="@string/thanhlap"
+        android:textAlignment="center"
+        android:textColor="@color/smallTextColor"
+        android:textSize="18dp" />
 
-            <Button
-                android:id="@+id/btnStarted"
-                android:layout_width="250dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="85dp"
-                android:layout_marginTop="760dp"
-                android:background="@drawable/style_button"
-                android:text="Get Started"
-                android:textSize="18sp"/>
-        </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
 
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnStarted"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="85dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/style_button"
+            android:text="Get Started"
+            android:textSize="18sp" />
+    </LinearLayout>
+</RelativeLayout>

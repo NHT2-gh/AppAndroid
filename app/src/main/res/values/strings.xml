@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Highlands</string>
+    <string name="thanhlap">Highlands Coffee được thành lập vào nằm 1999</string>
+
+
     <string name="plus_icon">+</string>
+
 
     <string name="read_more">Xem thêm</string>
     <string name="read_less">Rút gọn</string>

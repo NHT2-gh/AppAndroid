@@ -54,12 +54,12 @@
             android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <TextView
             android:id="@+id/forgetPass"
             android:layout_width="wrap_content"
@@ -74,13 +74,15 @@
         </TextView>
         <ProgressBar
             android:id="@+id/proBar_forgotPass"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:backgroundTint="@color/mainColor"
-            android:layout_gravity="center">
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:progressBackgroundTint="@color/mainColor"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            >
 
         </ProgressBar>
-    </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

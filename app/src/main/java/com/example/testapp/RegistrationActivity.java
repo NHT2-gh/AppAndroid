@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testapp.api.ApiService;
-import com.example.testapp.api.ApiResponse;
+import com.example.testapp.response.ApiResponse;
 
 import com.example.testapp.model.User;
 
@@ -38,9 +38,15 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         setControl();
+        setUp();
         setEvent();
     }
 
+    private void setUp() {
+        String defaultText = "+84";
+        etPhone.setText(defaultText);
+        etPhone.setSelection(defaultText.length());
+    }
     private void setControl() {
         tvLinkLogin = findViewById(R.id.tvLinkLogin);
         btnRegister = findViewById(R.id.btnRegister);
@@ -84,29 +90,31 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void sendUser() {
         // get data
-        User user = new User(null, 0, etPhone.getText().toString(), etPassword.getText().toString(), "customer", null, null, null, true);
-        ApiService.apiservice.sendUser(user).enqueue(new Callback<User>() {
+        User user = new User(null, 0, etPhone.getText().toString(), etPassword.getText().toString(), "CUSTOMER", null, null, null, true);
+        ApiService.apiservice.sendUser(user).enqueue(new Callback<ApiResponse>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                int code = 0;
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                int code = 200;
+                ApiResponse userResponse = response.body();
                 if (response.isSuccessful()) {
-                    User useResponse = response.body();
-                    if (useResponse != null) {
-                        code = response.code();
-                        Toast.makeText(RegistrationActivity.this, String.valueOf(code), Toast.LENGTH_SHORT).show();
+                    if (userResponse != null) {
+
+                        Log.i("message",userResponse.getMessage());
+                        Toast.makeText(RegistrationActivity.this,userResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         openActivityLogin();
-                        if(code == HttpsURLConnection.HTTP_CREATED){
-                            Toast.makeText(RegistrationActivity.this,"Đăng kí thành công", Toast.LENGTH_SHORT).show();
-                        }
                     }
                 } else{
-                    if(code == HttpsURLConnection.HTTP_CONFLICT)
-                        Toast.makeText(RegistrationActivity.this, "Số điện thoại đã được sử dụng", Toast.LENGTH_SHORT).show();
+                    code = response.code();
+                    if(code == HttpsURLConnection.HTTP_CONFLICT){
+                        Toast.makeText(RegistrationActivity.this,"Số điện thoại đã được đăng ký", Toast.LENGTH_SHORT).show();
+                    } else if (code == HttpsURLConnection.HTTP_INTERNAL_ERROR){
+                        Toast.makeText(RegistrationActivity.this,"Lỗi đăng kí", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
                 Toast.makeText(RegistrationActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -125,16 +133,11 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
         private boolean isValidPhoneNumber(String phoneNumber) {
-        if (!phoneNumber.startsWith("0")) {
+        if (!phoneNumber.startsWith("+84")) {
             return false;
-        } else if (phoneNumber.length() != 10) {
+        } else if (phoneNumber.length() != 12) {
             return false;
         }
-//        for (char c : phoneNumber.toCharArray()) {
-//            if (!Character.isDigit(c)) {
-//                return false;
-//            }
-//        }
         return true;
     }
 }

@@ -41,26 +41,26 @@
                 android:padding="20dp">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:orientation="horizontal">
                     <Button
-                        android:layout_width="170dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Deliver"
+                        android:layout_gravity="start"
                         android:background="@drawable/bg_add_cart"
                         android:textColor="@color/white"
-                        android:layout_marginRight="10dp"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:textAllCaps="false"/>
                     <Button
-
-
-                        android:layout_width="170dp"
+                        android:layout_width="150dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_height="wrap_content"
                         android:text="Pick Up"
                         android:textSize="16sp"
-                        android:background="@color/white"
+                        android:layout_gravity="end"
+                        android:background="@drawable/style_btn_size"
                         android:textColor="@color/black"
                         android:textAllCaps="false"/>
                 </LinearLayout>
@@ -70,6 +70,7 @@
                     android:orientation="vertical"
                     android:layout_marginTop="10dp">
                     <TextView
+                        android:id="@+id/tv_test"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Địa chỉ nhận hàng"
@@ -97,8 +98,8 @@
                         android:orientation="horizontal"
                         android:layout_marginTop="20dp">
                         <Button
-                            android:layout_width="130dp"
-                            android:layout_height="38dp"
+                            android:layout_width="110dp"
+                            android:layout_height="35dp"
                             android:text="Chỉnh sửa"
                             android:textAllCaps="false"
                             android:textSize="13sp"
@@ -109,8 +110,8 @@
                             android:textColor="@color/TextLightColor"
                             android:layout_marginRight="13dp"/>
                         <Button
-                            android:layout_width="130dp"
-                            android:layout_height="38dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
                             android:text="Thêm ghi chú"
                             android:textAllCaps="false"
                             android:textSize="13sp"
@@ -130,13 +131,13 @@
                     android:id="@+id/btn_showListCoupon"
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:drawableStart="@drawable/icon_discount"
                     android:drawableEnd="@drawable/icon_arrow_right_24"
                     android:text="Chưa áp dụng mã giảm giá"
                     android:textAllCaps="false"
                     android:backgroundTint="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp">
                 </Button>
@@ -152,7 +153,7 @@
                         android:background="@drawable/icon_dolla_24"/>
                     <TextView
                         android:id="@+id/tv_pointUser"
-                        android:layout_width="200dp"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:text="Sử dụng 5000 điểm"
                         android:layout_marginHorizontal="35dp"
@@ -166,6 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Thanh toán"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="18sp" />
                 <ScrollView
@@ -183,6 +185,7 @@
                             android:paddingVertical="5dp">
                             <TextView
                                 android:layout_width="wrap_content"
+                                android:textColor="@color/black"
                                 android:layout_height="wrap_content"
                                 android:text="Giá"
                                 />
@@ -202,6 +205,7 @@
                             android:paddingVertical="5dp">>
                             <TextView
                                 android:layout_width="wrap_content"
+                                android:textColor="@color/black"
                                 android:layout_height="wrap_content"
                                 android:text="Phí vận chuyển"/>
 
@@ -227,15 +231,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="140dp"
+                        android:textColor="@color/black"
                         android:text="Tổng tiền"
                         android:textStyle="bold"
-                        android:textSize="17sp"/>
+                        android:textSize="16sp"/>
 
                     <TextView
                         android:id="@+id/tv_totalPrice"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="60.000 VND"
+                        android:textColor="@color/mainColor"
                         android:gravity="right"
                         android:textStyle="bold"/>
                 </LinearLayout>
@@ -243,10 +249,10 @@
         </ScrollView>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="110dp"
             android:orientation="vertical"
             android:layout_alignParentBottom="true"
-            android:padding="20dp"
+            android:padding="10dp"
             android:background="@color/white">
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -263,7 +269,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tiền mặt"
-                    android:textColor="@color/white"
+                    android:textColor="@color/TextLightColor"
+                    android:textStyle="bold"
                     android:paddingHorizontal="9dp"
                     android:paddingVertical="1dp"
                     android:textAlignment="center"

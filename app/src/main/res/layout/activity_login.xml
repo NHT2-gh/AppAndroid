@@ -89,29 +89,39 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="bottom">
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/style_button"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textAllCaps="false"
-            android:text="Đăng nhập"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/tvLinkSignup"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bạn chưa có tài khoản ?"
-            android:layout_marginTop="15dp"
-            android:textAlignment="center"
-            android:textStyle="italic"
-            android:textColor="@color/mainColor"
-            android:textSize="16dp"
-            >
-        </TextView>
+            android:gravity="center">
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/style_button"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:text="Đăng nhập"
+                android:textSize="18dp" />
+            <ProgressBar
+                android:id="@+id/proBar_login"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/lightGrey"
+                android:visibility="gone"/>
+        </FrameLayout>
+    <TextView
+        android:id="@+id/tvLinkSignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bạn chưa có tài khoản ?"
+        android:layout_marginTop="15dp"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:textColor="@color/mainColor"
+        android:textSize="16dp" />
+        >
     </LinearLayout>
 
 

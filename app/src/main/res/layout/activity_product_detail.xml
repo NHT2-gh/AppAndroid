@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".ProductDetailActivity">
     <RelativeLayout
@@ -45,8 +46,8 @@
 
                 <ImageView
                     android:id="@+id/img_product"
-                    android:layout_width="280dp"
-                    android:layout_height="280dp"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
                     android:layout_gravity="center"
                     android:background="@drawable/img_detail" />
 
@@ -56,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:text="PHINDI CHOCO"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -79,7 +80,7 @@
                         android:layout_marginHorizontal="7dp"
                         android:text="4.8"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -89,14 +90,14 @@
                         android:layout_gravity="center"
                         android:text="(5)"
                         android:textColor="@color/smallTextColor"
-                        android:textSize="17sp" />
+                        android:textSize="14sp" />
 
                     <ImageButton
                         android:id="@+id/imgbtn_category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="220dp"
+                        android:layout_marginLeft="200dp"
                         android:background="@drawable/icon_caphe" />
                 </LinearLayout>
 
@@ -109,7 +110,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mô tả"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
 
                     <com.borjabravo.readmoretextview.ReadMoreTextView
@@ -122,7 +124,7 @@
                         app:trimCollapsedText="@string/read_more"
                         app:trimExpandedText="@string/read_less"
                         app:trimLength="25"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:trimMode="trimModeLength" />
 
                 </LinearLayout>
@@ -137,13 +139,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Size"
-                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="10dp"
+                        android:paddingVertical="3dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -188,19 +192,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
+                        android:textColor="@color/black"
                         android:text="Topping"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+
                         <ListView
                             android:id="@+id/lv_toppingList"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:divider="@android:color/transparent"
                             android:dividerHeight="10dp"/>
-                    </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
@@ -220,7 +222,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Giá"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="@color/smallTextColor"
                     />
                 <TextView
@@ -229,11 +231,11 @@
                     android:layout_height="wrap_content"
                     android:text="45.000 VND"
                     android:textStyle="bold"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textColor="@color/mainColor"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center_horizontal"
@@ -241,8 +243,8 @@
                 android:padding="5dp">
                 <Button
                     android:id="@+id/btn_buyNow"
-                    android:layout_width="140dp"
-                    android:layout_height="47dp"
+                    android:layout_width="110dp"
+                    android:layout_height="45dp"
                     android:background="@drawable/bg_add_cart"
                     android:text="Mua ngay"
                     android:textSize="18sp"

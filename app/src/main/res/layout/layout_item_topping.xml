@@ -9,94 +9,77 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         app:strokeColor="@color/lightGrey"
+        app:cardBackgroundColor="@color/white"
         app:strokeWidth="1dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:theme="@style/Theme.AppCompat.Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:buttonTint="@color/mainColor"
+
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                />
             <ImageView
                 android:id="@+id/img_topping"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
 
                 android:background="@drawable/img_topping"
                 android:layout_gravity="center_vertical"/>
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="7dp"
+                android:layout_gravity="center"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/tv_toppingName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phô mai tươi"
-                    android:fontFamily="@font/regular"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/sora_semibold"
+                    android:textSize="15sp" />
                 <LinearLayout
-                    android:id="@+id/layio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/checkboxrel"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="2dp"
-                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:theme="@style/CustomTheme"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/less"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/white"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="9dp">
-
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_margin="4dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/icon_minus" />
-                    </androidx.cardview.widget.CardView>
-
                     <TextView
-                        android:id="@+id/prnumber"
-                        style="@style/TextAppearance.AppCompat.Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/icon_minus_20"
                         android:layout_gravity="center"
-                        android:text="0"
-                        android:padding="5dp"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold" />
+                        android:focusableInTouchMode="false"
+                        >
 
+                    </TextView>
+                    <TextView
+                        android:layout_width="34dp"
+                        android:layout_height="match_parent"
+                        android:text="1"
+                        android:inputType="number"
+                        android:textSize="12dp"
+                        android:textAlignment="center">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/more"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_margin="5dp"
-                        android:background="@color/white"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="9dp">
-
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_margin="4dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/icon_plus_24" />
-
-                    </androidx.cardview.widget.CardView>
-
+                    </TextView>
+                    <TextView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/icon_add_20"
+                        android:layout_gravity="center|right"
+                        android:focusableInTouchMode="false">
+                    </TextView>
                 </LinearLayout>
+
             </LinearLayout>
             <TextView
                 android:id="@+id/tv_toppingPrice"

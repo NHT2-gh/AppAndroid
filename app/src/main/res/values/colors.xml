@@ -14,6 +14,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mainColor">#FFC67C4E</color>
     <color name="darkGrey">#FF313131</color>
+    <color name="green">#36C07E</color>
     <color name="lightGrey">#FFD4D4D4</color>
     <color name="red">#FF0000</color>
 <!--    text color-->
@@ -21,4 +22,10 @@
     <color name="priceTextColor">#FF2F4B4E</color>
     <color name="TextLightColor">#FF313131</color>
 
+<!--    color statistic-->
+    <color name="top1Color">#f2b670</color>
+    <color name="top2Color">#b7d190</color>
+    <color name="top3Color">#85b9e1</color>
+    <color name="top4Color">#396264</color>
+    <color name="top5Color">#a295af</color>
 </resources>

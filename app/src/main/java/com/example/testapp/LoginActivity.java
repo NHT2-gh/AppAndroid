@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tvForgotPass, tvLinkSignup;
     private Button btnLogin;
     private EditText etPhone, etPassword;
+    private ProgressBar pbLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,17 @@ public class LoginActivity extends AppCompatActivity {
         etPhone.setText(defaultText);
         etPhone.setSelection(defaultText.length());
     }
+    public boolean setRequired(List<EditText> listEt, String message) {
+        boolean check = true;
+        for (int i = 0; i < listEt.size(); i++) {
+            if (TextUtils.isEmpty(listEt.get(i).getText())) {
+                listEt.get(i).setError(message);
+                check = false;
+            }
+        }
+        return check;
+    }
+
 
     private void setControl() {
         etPhone = findViewById(R.id.etPhone);
@@ -60,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         tvForgotPass = findViewById(R.id.forgetPass);
         tvLinkSignup = findViewById(R.id.tvLinkSignup);
         btnLogin = findViewById(R.id.btnLogin);
+        pbLogin = findViewById(R.id.proBar_login);
 
         tvForgotPass.setPaintFlags(tvForgotPass.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         tvLinkSignup.setPaintFlags(tvLinkSignup.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -83,23 +96,21 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                openActivityHome();
                 postUser();
             }
         });
     }
-
-
+    //open Home
     private void openActivityHome() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
-
+    //open Sign Up
     private void openActivitySignup() {
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
-
+    //open Forgot Password
     private void openActivityForgotPassword() {
         List<EditText> listEditText = Arrays.asList(etPhone);
 
@@ -110,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
             proBarForgotPass.setVisibility(View.VISIBLE);
             tvForgotPass.setVisibility(View.INVISIBLE);
-
+            //Send OTP by firebase
             PhoneAuthProvider.verifyPhoneNumber(
                     PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
                             .setPhoneNumber(etPhone.getText().toString())
@@ -135,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                     super.onCodeSent(verificationId, forceResendingToken);
+                                    //Send phone user to forgot password activity
                                     proBarForgotPass.setVisibility(View.GONE);
                                     tvForgotPass.setVisibility(View.VISIBLE);
                                     Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
@@ -149,41 +161,47 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public boolean setRequired(List<EditText> listEt, String message) {
-        boolean check = true;
-        for (int i = 0; i < listEt.size(); i++) {
-            if (TextUtils.isEmpty(listEt.get(i).getText())) {
-                listEt.get(i).setError(message);
-                check = false;
-            }
-        }
-        return check;
-    }
 
     //Call API
     private void postUser() {
-        User user = new User(null,0,etPhone.getText().toString(),etPassword.getText().toString(),"customer",null, null, null, true);
-        ApiService.apiservice.loginUser(user).enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()) {
-                    User userResult = response.body();
-                    if (userResult != null){
-                        String token = userResult.getToken();
-                        Log.i("Token:", token);
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                        openActivityHome();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+        List<EditText> listRequired = Arrays.asList(etPhone, etPassword);
+        if(setRequired(listRequired, "Vui lòng nhập đầy đủ thông tin")){
+            User user = new User(null,0,etPhone.getText().toString(),etPassword.getText().toString(),"customer",null, null, null, true);
+            pbLogin.setVisibility(View.VISIBLE);
+            btnLogin.setVisibility(View.INVISIBLE);
+            //call API method POST to login
+            ApiService.apiservice.loginUser(user).enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful()) {
+                        User userResult = response.body();
+                        if (userResult != null){
+                            String token = userResult.getToken();
+                            Log.i("Token:", token);
+
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                            pbLogin.setVisibility(View.GONE);
+                            btnLogin.setVisibility(View.VISIBLE);
+                            openActivityHome();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                            pbLogin.setVisibility(View.GONE);
+                            btnLogin.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
-            }
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    pbLogin.setVisibility(View.GONE);
+                    btnLogin.setVisibility(View.VISIBLE);
+                }
+            });
+        }else{
+            pbLogin.setVisibility(View.GONE);
+            btnLogin.setVisibility(View.VISIBLE);
+        }
 
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
    // End call API
 }

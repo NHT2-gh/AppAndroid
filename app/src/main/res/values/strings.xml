@@ -11,4 +11,10 @@
 
     <string name="receive_the_otp">Bạn không nhận được mã ?</string>
     <string name="resendOtp">Gửi lại</string>
+
+    //statistic
+    <string name="title_statisticProduct">Biểu đồ thông kê sản phẩm bán chạy</string>
+    <string name="title_statisticData">Số liệu số lượng sản phẩm đã bán</string>
+
+    <string name="title_statisticSale">Biểu đồ thông kê doanh thu</string>
 </resources>

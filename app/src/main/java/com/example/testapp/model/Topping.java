@@ -78,6 +78,11 @@ public class Topping {
         this.status = status;
     }
 
+    public boolean isChecked() {
+        return true;
+    }
+
+
 //    public LocalDateTime getCreated_at() {
 //        return created_at;
 //    }

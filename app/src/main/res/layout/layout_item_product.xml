@@ -3,13 +3,17 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
+    android:layout_marginBottom="15dp"
+    android:layout_marginHorizontal="7dp"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/productCard"
-        android:layout_width="150dp"
+        android:divider="@android:color/transparent"
+        android:layout_width="140dp"
         android:layout_height="227dp"
+        android:layout_margin="3dp"
         app:cardCornerRadius="16dp">
 
         <LinearLayout
@@ -50,19 +54,21 @@
 
             <TextView
                 android:id="@+id/tv_ProductName"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:fontFamily="@font/sora_regular"
                 android:text="PHINCHOCO"
+                android:layout_gravity="center"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/tv_ProductPrice"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
                 android:fontFamily="@font/sora_regular"
                 android:text="45.000 VND"
@@ -74,7 +80,7 @@
                 android:id="@+id/btnAddItem"
                 android:layout_width="30dp"
                 android:layout_height="34dp"
-                android:layout_marginLeft="120dp"
+                android:layout_marginLeft="110dp"
                 android:background="@drawable/icon_add_item"
                 android:text="@string/plus_icon"
                 android:textAlignment="center"

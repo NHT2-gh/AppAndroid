@@ -12,7 +12,7 @@
     </style>
 
     <style name="CustomTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="android:fontFamily">@font/sora_regular</item>
         <item name="android:textColor">@color/black</item>
     </style>

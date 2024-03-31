@@ -177,6 +177,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         verificationId = getIntent().getStringExtra("verificationId");
 
         btnAccept.setOnClickListener(new View.OnClickListener() {
+            //check OTP
             @Override
             public void onClick(View view) {
                 List<EditText> listEditText = Arrays.asList(etOtpCode1, etOtpCode2, etOtpCode3, etOtpCode4, etOtpCode5, etOtpCode6);
@@ -211,6 +212,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         });
 
         tvResend.setOnClickListener(new View.OnClickListener() {
+            //Resend OTP
             @Override
             public void onClick(View view) {
                 PhoneAuthProvider.verifyPhoneNumber(
@@ -222,6 +224,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                     @Override
                                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                                         // Xử lý khi xác minh hoàn thành
+
 
                                     }
 
@@ -237,11 +240,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                         super.onCodeSent(newVerificationId, forceResendingToken);
                                         verificationId = newVerificationId;
                                         Toast.makeText(ForgotPasswordActivity.this, "OTP mới đã được gửi", Toast.LENGTH_SHORT).show();
+//                                        tvResend.setEnabled(false);
+//                                        tvResend.setTextColor(getColor(R.color.lightGrey));
                                     }
                                 })
                                 .build());
             }
         });
     }
+
 }
 

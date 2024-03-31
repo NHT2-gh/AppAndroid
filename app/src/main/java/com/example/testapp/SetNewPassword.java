@@ -67,7 +67,7 @@ public class SetNewPassword extends AppCompatActivity {
                         ApiResponse changePassResult = response.body();
                         if (changePassResult != null){
                             Toast.makeText(SetNewPassword.this, changePassResult.getMessage(), Toast.LENGTH_SHORT).show();
-                            openActivityHome();
+                            openActivityLogin();
                         }
                     }else {
                         code = response.code();
@@ -101,8 +101,8 @@ public class SetNewPassword extends AppCompatActivity {
 
         });
     }
-    private void openActivityHome() {
-        Intent intent = new Intent(this, HomeActivity.class);
+    private void openActivityLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

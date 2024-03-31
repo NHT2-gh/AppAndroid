@@ -17,4 +17,6 @@
     <string name="title_statisticData">Số liệu số lượng sản phẩm đã bán</string>
 
     <string name="title_statisticSale">Biểu đồ thông kê doanh thu</string>
+
+    <string name="no_data">Không có dữ liệu</string>
 </resources>

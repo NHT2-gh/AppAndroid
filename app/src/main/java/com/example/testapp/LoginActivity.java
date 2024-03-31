@@ -3,7 +3,9 @@ package com.example.testapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -164,6 +166,10 @@ public class LoginActivity extends AppCompatActivity {
 
     //Call API
     private void postUser() {
+
+        SharedPreferences sharedPreferences =getSharedPreferences("MyPerfs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
         List<EditText> listRequired = Arrays.asList(etPhone, etPassword);
         if(setRequired(listRequired, "Vui lòng nhập đầy đủ thông tin")){
             User user = new User(null,0,etPhone.getText().toString(),etPassword.getText().toString(),"customer",null, null, null, true);
@@ -178,11 +184,13 @@ public class LoginActivity extends AppCompatActivity {
                         if (userResult != null){
                             String token = userResult.getToken();
                             Log.i("Token:", token);
-
-                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
                             pbLogin.setVisibility(View.GONE);
                             btnLogin.setVisibility(View.VISIBLE);
                             openActivityHome();
+                            editor.putString("token", token);
+                            editor.apply();
+
                         } else {
                             Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                             pbLogin.setVisibility(View.GONE);

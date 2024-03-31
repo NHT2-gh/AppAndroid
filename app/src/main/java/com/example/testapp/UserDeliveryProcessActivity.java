@@ -14,11 +14,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
 public class UserDeliveryProcessActivity extends AppCompatActivity {
     private static final int REQUEST_CALL_PHONE_PERMISSION = 1;
+    private TextView tvStatusName;
     private ImageView tvStatus;
     private ImageButton ibCallShipper;
     @Override
@@ -30,15 +32,21 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
-//        Glide.with(this)
-//                .load("https://media.giphy.com/media/98uBZTzlXMhkk/giphy.gif")
-//                .into(tvStatus);
-
-        /*from raw folder*/
-        //load gif
+    Integer status_id = 2;
+    if(status_id == 1){
         Glide.with(this)
                 .load(R.drawable.gif_step1)
                 .into(tvStatus);
+
+
+    } else if (status_id ==2){
+        Glide.with(this)
+                .load(R.drawable.gif_step2)
+                .into(tvStatus);
+        tvStatusName.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
+    }
+
+        //load gif
 
         ibCallShipper.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,5 +70,7 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
     private void setControl() {
         tvStatus = findViewById(R.id.iv_status);
         ibCallShipper = findViewById(R.id.ib_autoCallShipper);
+
+        tvStatusName = findViewById(R.id.status_2);
     }
 }

@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".StaffChangeOrderStatusActivity"
+            android:exported="true" />
+        <activity
             android:name=".AdminSaleStatisticActivity"
             android:exported="true" />
         <activity
@@ -31,7 +34,7 @@
             android:name=".UserProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".UserOrderActivity"
+            android:name=".UserOrderBuyNowActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity

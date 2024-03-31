@@ -7,6 +7,7 @@ import androidx.core.util.Pair;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -55,6 +56,11 @@ public class AdminProductStatisticsActivity extends AppCompatActivity {
     private void setEvent() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPerfs", Context.MODE_PRIVATE);
         String token = "Bearer " + sharedPreferences.getString("token", null);
+
+//        String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date().getTime());
+//        tvSelectStarDate.setText(today);
+//        tvSelectEndDate.setText(today);
+
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,6 +167,7 @@ public class AdminProductStatisticsActivity extends AppCompatActivity {
 
     private void getDataStatisticByDate(String token,String startDate, String endDate){
         Log.i(startDate, endDate);
+
         ApiService.apiservice.getStatisticProductByDate(token, startDate, endDate).enqueue(new Callback<ListEntityStatusResponse<ProductSaleRequest>>() {
             @Override
             public void onResponse(Call<ListEntityStatusResponse<ProductSaleRequest>> call, Response<ListEntityStatusResponse<ProductSaleRequest>> response) {

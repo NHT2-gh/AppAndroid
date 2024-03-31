@@ -32,29 +32,31 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
-    Integer status_id = 2;
-    if(status_id == 1){
-        Glide.with(this)
-                .load(R.drawable.gif_step1)
-                .into(tvStatus);
 
 
-    } else if (status_id ==2){
-        Glide.with(this)
-                .load(R.drawable.gif_step2)
-                .into(tvStatus);
-        tvStatusName.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
-    }
+        Integer status_id = 2;
+        if(status_id == 1){
+            Glide.with(this)
+                    .load(R.drawable.gif_step1)
+                    .into(tvStatus);
 
-        //load gif
 
-        ibCallShipper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                autoCallShipper();
-            }
-        });
-    }
+        } else if (status_id ==2){
+            Glide.with(this)
+                    .load(R.drawable.gif_step2)
+                    .into(tvStatus);
+            tvStatusName.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
+        }
+
+            //load gif
+
+            ibCallShipper.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    autoCallShipper();
+                }
+            });
+        }
 
     private void autoCallShipper() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {

@@ -1,24 +1,19 @@
 package com.example.testapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.ContextCompat;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-public class UserOrderActivity extends AppCompatActivity {
+public class UserOrderBuyNowActivity extends AppCompatActivity {
     private Button btnBuy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_order);
+        setContentView(R.layout.activity_user_order_buy_now);
 
         setControl();
         setEvent();

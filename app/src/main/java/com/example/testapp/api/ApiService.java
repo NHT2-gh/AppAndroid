@@ -1,6 +1,7 @@
 package com.example.testapp.api;
 
 import com.example.testapp.model.Customer;
+import com.example.testapp.model.Order;
 import com.example.testapp.model.ProductSaleRequest;
 import com.example.testapp.model.StatisticRequest;
 import com.example.testapp.model.User;
@@ -49,4 +50,6 @@ public interface ApiService {
     @GET("api/statistic/date")
     Call<ListEntityStatusResponse<ProductSaleRequest>> getStatisticProductByDate(@Header("Authorization") String token, @Query("start") String start, @Query("end") String end);
 
+    @POST("api/admin/order/{orderId}/status")
+    Call<EntityStatusResponse<Order>> updateStatusOrder(@Header("Authorization") String token, @Path("orderId") Long orderId, @Body Order order);
 }

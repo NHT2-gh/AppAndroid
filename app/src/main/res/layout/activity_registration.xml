@@ -19,22 +19,51 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"
         />
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginBottom="15dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:hint="Nhập họ tên"
-        android:textColorHint="@color/smallTextColor"
-        app:hintTextColor="@color/black"
-        android:layout_marginBottom="15dp" >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_fullName"
+        android:orientation="horizontal">
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="vertical"
+            android:hint="Nhập họ"
+            android:backgroundTint="@color/mainColor"
+            android:textColorHint="@color/smallTextColor"
+            app:boxStrokeColor="@color/mainColor"
+            app:hintTextColor="@color/black"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_firstName"
+                android:layout_width="match_parent"
+                android:inputType="text"
+                android:layout_height="60dp"
+                android:padding="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:inputType="text"
-            android:layout_height="60dp"
-            android:padding="10dp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:hint="Nhập tên"
+            android:layout_gravity="end"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            app:boxStrokeColor="@color/mainColor"
+            android:textColorHint="@color/smallTextColor"
+            app:hintTextColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_lastName"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:inputType="text"
+                android:padding="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
@@ -52,21 +81,21 @@
             android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        android:hint="Nhập email"-->
-<!--        android:textColorHint="@color/smallTextColor"-->
-<!--        app:hintTextColor="@color/black"-->
-<!--        android:layout_marginBottom="15dp" >-->
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:inputType="text"-->
-<!--            android:layout_height="60dp"-->
-<!--            android:padding="10dp" />-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
+    <!--    <com.google.android.material.textfield.TextInputLayout-->
+    <!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:hint="Nhập email"-->
+    <!--        android:textColorHint="@color/smallTextColor"-->
+    <!--        app:hintTextColor="@color/black"-->
+    <!--        android:layout_marginBottom="15dp" >-->
+    <!--        <com.google.android.material.textfield.TextInputEditText-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:inputType="text"-->
+    <!--            android:layout_height="60dp"-->
+    <!--            android:padding="10dp" />-->
+    <!--    </com.google.android.material.textfield.TextInputLayout>-->
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -107,13 +136,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_gravity="bottom">
-        <TextView
-            android:id="@+id/result"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </TextView>
+        android:gravity="bottom">
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
@@ -121,7 +144,6 @@
             android:text="Đăng ký"
             android:textAllCaps="false"
             android:background="@drawable/style_button"
-            android:layout_marginTop="280dp"
             android:textSize="18dp"
             />
         <TextView
@@ -137,7 +159,4 @@
             >
         </TextView>
     </LinearLayout>
-
-
-
 </LinearLayout>

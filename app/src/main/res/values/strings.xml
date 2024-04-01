@@ -19,4 +19,10 @@
     <string name="title_statisticSale">Biểu đồ thông kê doanh thu</string>
 
     <string name="no_data">Không có dữ liệu</string>
+
+    //status name
+    <string name="statusName_1">Đơn hàng đã được xác nhận</string>
+    <string name="statusName_2">Đơn hàng đang được thực hiện</string>
+    <string name="statusName_3">Đơn hàng đang được giao</string>
+    <string name="statusName_4">Đơn hàng đã được giao thành công</string>
 </resources>

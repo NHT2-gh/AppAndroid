@@ -22,8 +22,6 @@ public class ProductDetailOrderAdapter extends ArrayAdapter {
     private Context context;
     private int resource;
     private List<OrderDetail> data;
-    private TextView tvToppingName, tvToppingPrice;
-    private ImageView ivToppingImg;
 
     private List<OrderDetail> listProduct = new ArrayList<>();
 
@@ -58,11 +56,11 @@ public class ProductDetailOrderAdapter extends ArrayAdapter {
         }
             // set data
             OrderDetail product = data.get(position);
-            holder.tvProductName.setText(product.getProduct_name());
-            holder.tvProductQuantity.setText(String.valueOf(product.getProduct_quantity()));
-            holder.tvProductSize.setText("Size: " + String.valueOf(product.getProduct_size()));
+            holder.tvProductName.setText(product.getProduct().getProduct_name());
+            holder.tvProductQuantity.setText(String.valueOf(product.getQuantity()));
+            holder.tvProductSize.setText("Size: " + String.valueOf(product.getSize()));
             Glide.with(convertView)
-                    .load(product.getProduct_img())
+                    .load(product.getProduct().getImage())
                      .into(holder.ivProductImg);
 
         return convertView;

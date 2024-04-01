@@ -48,10 +48,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product products = listProducts.get(position);
-        holder.tvName.setText(products.getName());
+        holder.tvName.setText(products.getProduct_name());
         holder.tvPrice.setText(String.valueOf(products.getPrice())); // Convert giá thành chuỗi
         Glide.with(holder.itemView.getContext())
-                .load(products.getImg())
+                .load(products.getImage())
                 .into(holder.imgProduct);
     }
 

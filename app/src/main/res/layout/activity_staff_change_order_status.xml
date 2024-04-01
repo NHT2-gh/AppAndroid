@@ -49,11 +49,12 @@
                         android:textColor="@color/TextLightColor"
                         android:text="Mã đơn hàng:" />
                     <TextView
+                        android:id="@+id/tv_orderId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/TextLightColor"
                         android:layout_marginLeft="10dp"
-                        android:text="OD01"/>
+                        android:text="1"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -70,6 +71,7 @@
                         android:layout_marginBottom="15dp"
                         />
                     <TextView
+                        android:id="@+id/tv_orderAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hẻm 35, đường 339, p.Phước Long B,..."
@@ -154,13 +156,12 @@
                                 android:textColor="@color/black"
                                 android:layout_height="wrap_content"
                                 android:text="Phí vận chuyển"/>
-
                             <TextView
                                 android:id="@+id/tv_freightCost"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="right"
-                                android:text="15.000 VND" />
+                                android:text="15000" />
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
@@ -211,12 +212,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tiền mặt"
-                    android:textColor="@color/TextLightColor"
-                    android:textStyle="bold"
+                    android:theme="@style/Theme.AppCompat.Light"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/mainColor"
                     android:paddingHorizontal="9dp"
-                    android:paddingVertical="1dp"
+                    android:paddingVertical="2dp"
                     android:textAlignment="center"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     android:background="@drawable/style_button"/>
             </LinearLayout>
             <Button

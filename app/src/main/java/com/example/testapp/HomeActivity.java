@@ -53,10 +53,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void Khoitao() {
-        data.add(new Product("1", "PHINCHOCO", 45000, "https://firebasestorage.googleapis.com/v0/b/image-highland-6ae35.appspot.com/o/6f6eeda1-8ba1-4632-988f-4fa1b20c98bdjpg?alt=media"));
-        data.add(new Product("2", "Choco2", 45000, "https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/HLC_New_logo_5.1_Products__FREEZE_TRA_XANH.jpg"));
-        data.add(new Product("3", "PHINCHOCO", 45000, "https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/HLC_New_logo_5.1_Products__FREEZE_TRA_XANH.jpg"));
-        data.add(new Product("4", "PHINCHOCO", 45000, "https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/HLC_New_logo_5.1_Products__FREEZE_TRA_XANH.jpg"));
+        data.add(new Product("1", "PHINCHOCO", "https://firebasestorage.googleapis.com/v0/b/image-highland-6ae35.appspot.com/o/6f6eeda1-8ba1-4632-988f-4fa1b20c98bdjpg?alt=media", 45000));
+
     }
 
     private void setControl() {

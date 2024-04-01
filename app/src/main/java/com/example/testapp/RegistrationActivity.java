@@ -28,8 +28,7 @@ import retrofit2.Response;
 
 public class RegistrationActivity extends AppCompatActivity {
     TextView tvLinkLogin;
-    EditText etFullName, etPhone, etPassword, etRePassword;
-    TextView result;
+    EditText etFirstName, etLastName, etPhone, etPassword, etRePassword;
     Button btnRegister;
 
 
@@ -50,11 +49,11 @@ public class RegistrationActivity extends AppCompatActivity {
     private void setControl() {
         tvLinkLogin = findViewById(R.id.tvLinkLogin);
         btnRegister = findViewById(R.id.btnRegister);
-        etFullName = findViewById(R.id.et_fullName);
+        etFirstName = findViewById(R.id.et_firstName);
+        etLastName = findViewById(R.id.et_lastName);
         etPhone = findViewById(R.id.et_phone);
         etPassword = findViewById(R.id.et_password);
         etRePassword = findViewById(R.id.et_rePassword);
-        result = findViewById(R.id.result);
 
     }
     private void setEvent() {
@@ -68,7 +67,7 @@ public class RegistrationActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<EditText> listEditText = Arrays.asList(etFullName, etPhone, etPassword, etRePassword);
+                List<EditText> listEditText = Arrays.asList(etFirstName,etLastName, etPhone, etPassword, etRePassword);
                 if(setRequired(listEditText, "Vui lòng điền đầy đủ thông tin")) {
                     if (isValidPhoneNumber(etPhone.getText().toString())) {
                         if (etPassword.getText().toString().equals(etRePassword.getText().toString())) {

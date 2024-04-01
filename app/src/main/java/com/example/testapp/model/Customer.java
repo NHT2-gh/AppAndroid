@@ -16,7 +16,7 @@ public class Customer {
 
     private String created_at;
 
-    private LocalDateTime updated_at;
+    private String updated_at;
 
     private String cccd;
 
@@ -88,11 +88,11 @@ public class Customer {
         this.created_at = created_at;
     }
 
-    public LocalDateTime getUpdated_at() {
+    public String getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
+    public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
 

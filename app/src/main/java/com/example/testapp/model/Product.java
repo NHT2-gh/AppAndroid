@@ -1,18 +1,19 @@
 package com.example.testapp.model;
 
 public class Product {
-    private String id, name, img;
+    private String id, product_name, image;
     private int price;
 
 
     public Product() {
+        super();
     }
 
-    public Product(String id, String name, int price, String img) {
+    public Product(String id, String product_name, String image, int price) {
         this.id = id;
-        this.name = name;
+        this.product_name = product_name;
+        this.image = image;
         this.price = price;
-        this.img = img;
     }
 
     public String getId() {
@@ -23,20 +24,20 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getProduct_name() {
+        return product_name;
     }
 
-    public String getImg() {
-        return img;
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public String getImage() {
+        return image;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getPrice() {

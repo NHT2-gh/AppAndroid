@@ -1,5 +1,11 @@
 package com.example.testapp.api;
 
+//import static android.content.Context.WIFI_SERVICE;
+//import static androidx.core.app.AppOpsManagerCompat.Api23Impl.getSystemService;
+//
+//import android.net.wifi.WifiManager;
+//import android.text.format.Formatter;
+
 import com.example.testapp.model.Customer;
 import com.example.testapp.model.Order;
 import com.example.testapp.model.ProductSaleRequest;
@@ -10,6 +16,8 @@ import com.example.testapp.response.EntityStatusResponse;
 import com.example.testapp.response.ListEntityStatusResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.net.InetAddress;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -26,7 +34,11 @@ public interface ApiService {
     //base link:http://....:9999/
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
-    ApiService apiservice = new Retrofit.Builder().baseUrl("http://192.168.0.192:9999/").addConverterFactory(GsonConverterFactory.create(gson))
+//    WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+//    String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+
+
+    ApiService apiservice = new Retrofit.Builder().baseUrl("http://192.168.99.130:9999/").addConverterFactory(GsonConverterFactory.create(gson))
             .build().create(ApiService.class);
 
     @POST("auth/signup")
@@ -49,6 +61,9 @@ public interface ApiService {
 
     @GET("api/statistic/date")
     Call<ListEntityStatusResponse<ProductSaleRequest>> getStatisticProductByDate(@Header("Authorization") String token, @Query("start") String start, @Query("end") String end);
+
+    @GET("api/admin/order/{orderId}/find")
+    Call<EntityStatusResponse<Order>> getOrderById(@Header("Authorization") String token, @Path("orderId") Long orderId);
 
     @POST("api/admin/order/{orderId}/status")
     Call<EntityStatusResponse<Order>> updateStatusOrder(@Header("Authorization") String token, @Path("orderId") Long orderId, @Body Order order);

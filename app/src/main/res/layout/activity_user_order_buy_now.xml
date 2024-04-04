@@ -214,7 +214,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="right"
-                                android:text="15.000 VND" />
+                                android:text="1500" />
                         </LinearLayout>
 
                     </LinearLayout>

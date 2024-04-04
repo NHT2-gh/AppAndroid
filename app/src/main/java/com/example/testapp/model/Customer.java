@@ -22,7 +22,28 @@ public class Customer {
 
     private String tax_id;
 
-    private Long user_id;
+    private User user;
+
+    public Customer(Long customer_id, String firstname, String lastname, Date birthday, String email,
+                    String phone, String address, String created_at, String updated_at, String cccd,
+                    String tax_id, User user) {
+        this.customer_id = customer_id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthday = birthday;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.cccd = cccd;
+        this.tax_id = tax_id;
+        this.user = user;
+    }
+
+    public Customer() {
+        super();
+    }
 
     public Long getCustomer_id() {
         return customer_id;
@@ -112,11 +133,11 @@ public class Customer {
         this.tax_id = tax_id;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StaffChangeOrderStatusActivity">
+    tools:context=".StaffOrderDetailActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,16 +25,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:navigationIcon="@drawable/icon_arrow_back_24"
-                    app:title="15:44 , 29/01/2023"
+                    app:title=""
                     app:titleTextColor="@color/black">
                 </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.appbar.AppBarLayout>
         </FrameLayout>
+        <ProgressBar
+            android:id="@+id/proBar_loading"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="180dp"
+            android:visibility="gone"/>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="?attr/actionBarSize">
+
             <LinearLayout
+                android:id="@+id/lnl_showOrderDetail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -53,8 +62,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/TextLightColor"
-                        android:layout_marginLeft="10dp"
-                        android:text="1"/>
+                        android:layout_marginLeft="10dp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,7 +82,6 @@
                         android:id="@+id/tv_orderAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hẻm 35, đường 339, p.Phước Long B,..."
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -82,35 +89,36 @@
                         />
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Số 2, hẻm 35, đường 339" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginVertical="5dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tóm tắt đơn hàng"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
-                        android:layout_marginBottom="15dp"
-                        />
-                    <ListView
-                        android:id="@+id/lv_listProduct"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:divider="@android:color/transparent"
-                        android:dividerHeight="10dp">
-                    </ListView>
-                </LinearLayout>
+                        android:orientation="vertical"
+                        android:layout_marginVertical="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tóm tắt đơn hàng"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="15dp"
+                            />
+                        <ListView
+                            android:id="@+id/lv_listProduct"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:divider="@android:color/transparent"
+                            android:dividerHeight="10dp">
+                        </ListView>
+                    </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:paddingBottom="120dp"
                     android:layout_marginVertical="5dp">
                     <TextView
                         android:layout_width="wrap_content"
@@ -143,7 +151,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="right"
-                                android:text="45.000 VND" />
+                                android:text="0" />
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -161,7 +169,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="right"
-                                android:text="15000" />
+                                android:text="0" />
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
@@ -182,7 +190,7 @@
                             android:id="@+id/tv_totalPrice"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="60.000 VND"
+                            android:text="0"
                             android:textColor="@color/mainColor"
                             android:gravity="right"
                             android:textStyle="bold"/>
@@ -192,13 +200,13 @@
         </ScrollView>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_alignParentBottom="true"
             android:padding="10dp"
             android:background="@color/white">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
@@ -220,9 +228,24 @@
                     android:textAlignment="center"
                     android:textSize="10sp"
                     android:background="@drawable/style_button"/>
+                <TextView
+                    android:id="@+id/tv_completedOrder"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="17sp"
+                    android:gravity="center"
+                    android:textStyle="italic"
+                    android:fontFamily="@font/sora_semibold"
+                    android:drawableStart="@drawable/icon_check_24"
+                    android:paddingHorizontal="10dp"
+                    android:text="@string/statusName_5"
+                    android:visibility="gone"/>
             </LinearLayout>
             <Button
-                android:id="@+id/btn_changeStatus"
+                android:id="@+id/btn_updateStatus"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -230,6 +253,7 @@
                 android:fontFamily="@font/sora_semibold"
                 android:text="Nhận đơn"
                 android:textSize="18sp"
+                android:focusable="true"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
         </LinearLayout>

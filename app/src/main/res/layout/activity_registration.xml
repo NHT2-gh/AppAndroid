@@ -137,15 +137,27 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="bottom">
-        <Button
-            android:id="@+id/btnRegister"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Đăng ký"
-            android:textAllCaps="false"
-            android:background="@drawable/style_button"
-            android:textSize="18dp"
-            />
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Đăng ký"
+                android:textAllCaps="false"
+                android:background="@drawable/style_button"
+                android:textSize="18dp"
+                />
+            <ProgressBar
+                android:id="@+id/proBar_loading"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/lightGrey"
+                android:visibility="gone"/>
+        </FrameLayout>
+
         <TextView
             android:id="@+id/tvLinkLogin"
             android:layout_width="match_parent"

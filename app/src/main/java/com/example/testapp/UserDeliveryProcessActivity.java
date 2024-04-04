@@ -104,7 +104,7 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
                         Log.i("message", "onResponse: " + resultResponse.getMessage());
                     }
                 }
-                handler.postDelayed(() -> getOrderById(token), 30000); // 30 giây
+                handler.postDelayed(() -> getOrderById(token), 3000); // 3 giây
             }
 
             @Override

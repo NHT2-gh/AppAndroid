@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.testapp"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.testapp"
@@ -51,6 +51,7 @@ dependencies {
     implementation("com.borjabravo:readmoretextview:2.1.0")
     //load img
     implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation("androidx.activity:activity:1.8.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
 

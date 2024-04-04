@@ -1,5 +1,8 @@
 package com.example.testapp;
 
+import static com.example.testapp.function.Function.isValidPhoneNumber;
+import static com.example.testapp.function.Function.setRequired;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -54,21 +57,10 @@ public class LoginActivity extends AppCompatActivity {
         etPhone.setText(defaultText);
         etPhone.setSelection(defaultText.length());
     }
-    public boolean setRequired(List<EditText> listEt, String message) {
-        boolean check = true;
-        for (int i = 0; i < listEt.size(); i++) {
-            if (TextUtils.isEmpty(listEt.get(i).getText())) {
-                listEt.get(i).setError(message);
-                check = false;
-            }
-        }
-        return check;
-    }
 
 
     private void setControl() {
         etPhone = findViewById(R.id.etPhone);
-
 
         etPassword = findViewById(R.id.etPassword);
         tvForgotPass = findViewById(R.id.forgetPass);
@@ -81,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
+
         tvForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,8 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressBar proBarForgotPass;
         proBarForgotPass = findViewById((R.id.proBar_forgotPass));
 
-        if(setRequired(listEditText, "Vui lòng nhập số điện thoại để thiết lập mật khẩu mới")){
-
+        if(setRequired(listEditText, "Vui lòng nhập số điện thoại để thiết lập mật khẩu mới") && isValidPhoneNumber(etPhone.getText().toString())){
             proBarForgotPass.setVisibility(View.VISIBLE);
             tvForgotPass.setVisibility(View.INVISIBLE);
             //Send OTP by firebase
@@ -159,20 +151,20 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             })
                             .build());
-
+        }else {
+            etPhone.setError("Vui Lòng nhập đúng định dạng cho số điện thoại");
         }
     }
 
 
     //Call API
     private void postUser() {
-
         SharedPreferences sharedPreferences =getSharedPreferences("MyPerfs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         List<EditText> listRequired = Arrays.asList(etPhone, etPassword);
         if(setRequired(listRequired, "Vui lòng nhập đầy đủ thông tin")){
-            User user = new User(null,0,etPhone.getText().toString(),etPassword.getText().toString(),"customer",null, null, null, true);
+            User user = new User(null,0,etPhone.getText().toString(),etPassword.getText().toString(),"customer",null, null, null, null, null, true);
             pbLogin.setVisibility(View.VISIBLE);
             btnLogin.setVisibility(View.INVISIBLE);
             //call API method POST to login
@@ -211,5 +203,4 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
-   // End call API
 }

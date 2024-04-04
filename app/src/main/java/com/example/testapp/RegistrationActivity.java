@@ -1,5 +1,8 @@
 package com.example.testapp;
 
+import static com.example.testapp.function.Function.isValidPhoneNumber;
+import static com.example.testapp.function.Function.setRequired;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +34,7 @@ public class RegistrationActivity extends AppCompatActivity {
     TextView tvLinkLogin;
     EditText etFirstName, etLastName, etPhone, etPassword, etRePassword;
     Button btnRegister;
+    ProgressBar progressBarLoading;
 
 
     @Override
@@ -55,6 +60,8 @@ public class RegistrationActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
         etRePassword = findViewById(R.id.et_rePassword);
 
+        progressBarLoading = findViewById(R.id.proBar_loading);
+
     }
     private void setEvent() {
         tvLinkLogin.setOnClickListener(new View.OnClickListener() {
@@ -67,29 +74,36 @@ public class RegistrationActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<EditText> listEditText = Arrays.asList(etFirstName,etLastName, etPhone, etPassword, etRePassword);
-                if(setRequired(listEditText, "Vui lòng điền đầy đủ thông tin")) {
-                    if (isValidPhoneNumber(etPhone.getText().toString())) {
-                        if (etPassword.getText().toString().equals(etRePassword.getText().toString())) {
-                            sendUser();
-                        } else {
-                            etRePassword.setError("Xác nhận mật khẩu không khớp");
-                        }
-                    } else {
-                        etPhone.setError("SĐT bắt đầu bằng 0, đủ 10 số mới hợp lệ");
-                    }
-                }
+                checkInput();
             }
         });
     }
+    private void checkInput() {
+        List<EditText> listEditText = Arrays.asList(etFirstName,etLastName, etPhone, etPassword, etRePassword);
+        if(setRequired(listEditText, "Vui lòng điền đầy đủ thông tin")) {
+            if (isValidPhoneNumber(etPhone.getText().toString())) {
+                if (etPassword.getText().toString().equals(etRePassword.getText().toString())) {
+                    sendUser();
+                } else {
+                    etRePassword.setError("Xác nhận mật khẩu không khớp");
+                }
+            } else {
+                etPhone.setError("SĐT bắt đầu bằng +84, đủ 10 số mới hợp lệ");
+            }
+        }
+
+    }
+
     private void openActivityLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
     private void sendUser() {
+        progressBarLoading.setVisibility(View.VISIBLE);
+        btnRegister.setVisibility(View.GONE);
         // get data
-        User user = new User(null, 0, etPhone.getText().toString(), etPassword.getText().toString(), "CUSTOMER", null, null, null, true);
+        User user = new User(null, 0, etPhone.getText().toString(), etPassword.getText().toString(), "CUSTOMER", null,etFirstName.getText().toString(),etLastName.getText().toString(), null, null, true);
         ApiService.apiservice.sendUser(user).enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -97,7 +111,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 ApiResponse userResponse = response.body();
                 if (response.isSuccessful()) {
                     if (userResponse != null) {
-
+                        progressBarLoading.setVisibility(View.GONE);
                         Log.i("message",userResponse.getMessage());
                         Toast.makeText(RegistrationActivity.this,userResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         openActivityLogin();
@@ -120,23 +134,5 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
-    public boolean setRequired(List<EditText> listEt, String message) {
-        boolean check = true;
-        for (int i = 0; i < listEt.size(); i++) {
-            if (TextUtils.isEmpty(listEt.get(i).getText())) {
-                listEt.get(i).setError(message);
-                check = false;
-            }
-        }
-        return check;
-    }
 
-        private boolean isValidPhoneNumber(String phoneNumber) {
-        if (!phoneNumber.startsWith("+84")) {
-            return false;
-        } else if (phoneNumber.length() != 12) {
-            return false;
-        }
-        return true;
-    }
 }

@@ -25,4 +25,5 @@
     <string name="statusName_2">Đơn hàng đang được thực hiện</string>
     <string name="statusName_3">Đơn hàng đang được giao</string>
     <string name="statusName_4">Đơn hàng đã được giao thành công</string>
+    <string name="statusName_5">Đã hoàn thành</string>
 </resources>

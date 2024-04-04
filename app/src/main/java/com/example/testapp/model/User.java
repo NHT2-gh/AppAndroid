@@ -6,7 +6,7 @@ public class User {
     private Long id;
 
     private Integer points;
-    private String username, password, role_name, token;
+    private String username, password, role_name, token, first_name, last_name;
 
     private LocalDateTime create_at, update_at;
     private boolean isActive;
@@ -15,13 +15,15 @@ public class User {
         super();
     }
 
-    public User(Long id, Integer points, String username, String password, String role_name, String token, LocalDateTime create_at, LocalDateTime update_at, boolean isActive) {
+    public User(Long id, Integer points, String username, String password, String role_name, String token, String first_name, String last_name, LocalDateTime create_at, LocalDateTime update_at, boolean isActive) {
         this.id = id;
         this.points = points;
         this.username = username;
         this.password = password;
         this.role_name = role_name;
         this.token = token;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.create_at = create_at;
         this.update_at = update_at;
         this.isActive = isActive;
@@ -73,6 +75,22 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public LocalDateTime getCreate_at() {

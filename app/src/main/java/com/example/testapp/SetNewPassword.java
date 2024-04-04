@@ -1,5 +1,7 @@
 package com.example.testapp;
 
+import static com.example.testapp.function.Function.setRequired;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -36,16 +38,6 @@ public class SetNewPassword extends AppCompatActivity {
         setControl();
         setEvent();
 
-    }
-    public boolean setRequired(List<EditText> listEt, String message) {
-        boolean check = true;
-        for (int i = 0; i < listEt.size(); i++) {
-            if (TextUtils.isEmpty(listEt.get(i).getText())) {
-                listEt.get(i).setError(message);
-                check = false;
-            }
-        }
-        return check;
     }
     private void setControl() {
         btnLogin = findViewById(R.id.btnLogin);

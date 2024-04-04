@@ -57,9 +57,7 @@ public class AdminProductStatisticsActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPerfs", Context.MODE_PRIVATE);
         String token = "Bearer " + sharedPreferences.getString("token", null);
 
-//        String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date().getTime());
-//        tvSelectStarDate.setText(today);
-//        tvSelectEndDate.setText(today);
+
 
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override

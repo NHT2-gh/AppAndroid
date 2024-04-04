@@ -1,14 +1,9 @@
 package com.example.testapp.api;
 
-//import static android.content.Context.WIFI_SERVICE;
-//import static androidx.core.app.AppOpsManagerCompat.Api23Impl.getSystemService;
-//
-//import android.net.wifi.WifiManager;
-//import android.text.format.Formatter;
-
 import com.example.testapp.model.Customer;
 import com.example.testapp.model.Order;
 import com.example.testapp.model.ProductSaleRequest;
+import com.example.testapp.model.Profile;
 import com.example.testapp.model.StatisticRequest;
 import com.example.testapp.model.User;
 import com.example.testapp.response.ApiResponse;
@@ -38,7 +33,7 @@ public interface ApiService {
 //    String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
 
-    ApiService apiservice = new Retrofit.Builder().baseUrl("http://192.168.99.130:9999/").addConverterFactory(GsonConverterFactory.create(gson))
+    ApiService apiservice = new Retrofit.Builder().baseUrl("http://192.168.0.192:9999/").addConverterFactory(GsonConverterFactory.create(gson))
             .build().create(ApiService.class);
 
     @POST("auth/signup")
@@ -53,6 +48,7 @@ public interface ApiService {
     @GET("api/users/profile")
     Call<EntityStatusResponse<Customer>> getUserProfile(@Header("Authorization") String token);
 
+    //statistic
     @GET("api/statistic/product")
     Call<ListEntityStatusResponse<ProductSaleRequest>> getStatisticProduct(@Header("Authorization") String token);
 
@@ -62,9 +58,13 @@ public interface ApiService {
     @GET("api/statistic/date")
     Call<ListEntityStatusResponse<ProductSaleRequest>> getStatisticProductByDate(@Header("Authorization") String token, @Query("start") String start, @Query("end") String end);
 
+    //order
     @GET("api/admin/order/{orderId}/find")
     Call<EntityStatusResponse<Order>> getOrderById(@Header("Authorization") String token, @Path("orderId") Long orderId);
 
-    @POST("api/admin/order/{orderId}/status")
+    @PUT("api/admin/order/{orderId}/status")
     Call<EntityStatusResponse<Order>> updateStatusOrder(@Header("Authorization") String token, @Path("orderId") Long orderId, @Body Order order);
+
+    @GET("api/admin/order/all")
+    Call<ListEntityStatusResponse<Order>> getAllOrder(@Header("Authorization") String token);
 }

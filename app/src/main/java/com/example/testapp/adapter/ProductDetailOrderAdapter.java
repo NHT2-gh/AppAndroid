@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.example.testapp.R;
+import com.example.testapp.function.Function;
 import com.example.testapp.model.OrderDetail;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class ProductDetailOrderAdapter extends ArrayAdapter {
         this.data = data;
     }
     static class ViewHolder {
-         TextView tvProductName, tvProductQuantity, tvProductSize;
+         TextView tvProductName, tvProductQuantity, tvProductSize, tvAmount;
          ImageView ivProductImg;
     }
     @NonNull
@@ -49,18 +50,20 @@ public class ProductDetailOrderAdapter extends ArrayAdapter {
             holder.tvProductQuantity = convertView.findViewById(R.id.tv_productQuantity);
             holder.tvProductSize = convertView.findViewById(R.id.tv_productSize);
             holder.ivProductImg = convertView.findViewById(R.id.img_product);
+            holder.tvAmount = convertView.findViewById(R.id.tv_amount);
 
             convertView.setTag(holder);
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
             // set data
-            OrderDetail product = data.get(position);
-            holder.tvProductName.setText(product.getProduct().getProduct_name());
-            holder.tvProductQuantity.setText(String.valueOf(product.getQuantity()));
-            holder.tvProductSize.setText("Size: " + String.valueOf(product.getSize()));
+            OrderDetail orderDetail = data.get(position);
+            holder.tvProductName.setText(orderDetail.getProduct().getProduct_name());
+            holder.tvProductQuantity.setText("SL: " + String.valueOf(orderDetail.getQuantity()));
+            holder.tvProductSize.setText("Size: " + String.valueOf(orderDetail.getSize()));
+            holder.tvAmount.setText(Function.formatToVND(orderDetail.getPrice()));
             Glide.with(convertView)
-                    .load(product.getProduct().getImage())
+                    .load(orderDetail.getProduct().getImage())
                      .into(holder.ivProductImg);
 
         return convertView;

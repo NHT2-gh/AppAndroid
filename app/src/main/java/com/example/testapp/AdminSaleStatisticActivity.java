@@ -139,7 +139,7 @@ public class AdminSaleStatisticActivity extends AppCompatActivity {
                     }
                 }else{
                     try {
-                        Log.i("erro",response.errorBody().string());
+                        Log.i("error",response.errorBody().string());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

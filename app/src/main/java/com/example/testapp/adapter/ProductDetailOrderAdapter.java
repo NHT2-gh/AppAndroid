@@ -24,9 +24,6 @@ public class ProductDetailOrderAdapter extends ArrayAdapter {
     private int resource;
     private List<OrderDetail> data;
 
-    private List<OrderDetail> listProduct = new ArrayList<>();
-
-
 
     public ProductDetailOrderAdapter(Context context, int resource, List <OrderDetail> data) {
         super(context, resource, data);

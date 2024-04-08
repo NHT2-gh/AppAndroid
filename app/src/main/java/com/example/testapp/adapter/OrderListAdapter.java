@@ -36,6 +36,7 @@ public class OrderListAdapter extends ArrayAdapter {
         this.data = data;
     }
 
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

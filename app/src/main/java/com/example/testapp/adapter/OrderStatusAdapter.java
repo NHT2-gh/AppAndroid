@@ -22,40 +22,10 @@ import com.example.testapp.model.OrderStatus;
 import java.util.List;
 
 public class OrderStatusAdapter extends BaseAdapter {
-
+    TextView txtStatus;
     Context context;
     int resource;
     List <OrderStatus> data;
-    TextView txtStatus;
-
-    @Override
-    public int getCount() {
-        return data != null ? data.size() : 0;
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return i;
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = LayoutInflater.from(context).inflate(resource, parent, false);
-
-
-        txtStatus = convertView.findViewById(R.id.txtOrderStatus);      // txtOrderStatus của item nằm trong Spinner
-
-        OrderStatus status = data.get(position);
-        txtStatus.setText(status.getName());
-
-        return convertView;
-    }
-
 
     public OrderStatusAdapter(@NonNull Context context, int resource, List <OrderStatus> data) {
         super();
@@ -65,4 +35,33 @@ public class OrderStatusAdapter extends BaseAdapter {
     }
 
 
+    @Override
+    public int getCount() {
+        return data != null ? data.size():0;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return position;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @NonNull
+    @Override
+    public View getView(int position, @NonNull View convertView, @NonNull ViewGroup parent) {
+            convertView = LayoutInflater.from(context).inflate(resource, parent, false);
+
+
+            txtStatus = convertView.findViewById(R.id.txtOrderStatus);
+
+
+        OrderStatus status = data.get(position);
+        txtStatus.setText(status.getName());
+
+        return convertView;
+    }
 }

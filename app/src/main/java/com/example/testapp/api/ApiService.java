@@ -33,7 +33,7 @@ public interface ApiService {
 //    String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
 
-    ApiService apiservice = new Retrofit.Builder().baseUrl("http://192.168.0.192:9999/").addConverterFactory(GsonConverterFactory.create(gson))
+    ApiService apiservice = new Retrofit.Builder().baseUrl("http://172.16.16.44:9999/").addConverterFactory(GsonConverterFactory.create(gson))
             .build().create(ApiService.class);
 
     @POST("auth/signup")
@@ -45,7 +45,7 @@ public interface ApiService {
     @PUT("auth/change/{username}")
     Call<ApiResponse> changePassword(@Path("username") String username, @Body User user);
 
-    @GET("api/users/profile")
+    @GET("api/users/find")
     Call<EntityStatusResponse<Customer>> getUserProfile(@Header("Authorization") String token);
 
     //statistic
@@ -67,4 +67,8 @@ public interface ApiService {
 
     @GET("api/admin/order/all")
     Call<ListEntityStatusResponse<Order>> getAllOrder(@Header("Authorization") String token);
+    @GET ("api/admin/order/status")
+    Call<ListEntityStatusResponse<Order>> getOrderByStatus(@Header("Authorization") String token, @Query("status") Integer status );
+    @GET ("api/admin/order/date")
+    Call<ListEntityStatusResponse<Order>> getOrderByDate(@Header("Authorization")String token, @Query("start") String start, @Query("end") String end);
 }

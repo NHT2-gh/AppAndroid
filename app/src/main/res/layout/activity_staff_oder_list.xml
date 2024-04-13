@@ -41,21 +41,22 @@
                 android:layout_margin="20dp"
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
+                android:theme="@style/Base.Theme.TestApp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/lightGrey"
-                app:queryHint="Tìm kiếm sản phẩm"
+                app:queryHint="Tìm kiếm đơn hàng"
                 app:iconifiedByDefault="false"
                 android:background="@drawable/bg_search_view">
             </androidx.appcompat.widget.SearchView>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:paddingHorizontal="20dp"
                 android:orientation="horizontal">
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_showDate"
-                    android:layout_width="170dp"
+                    android:layout_width="150dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="30dp"
                     android:layout_height="35dp"
@@ -100,7 +101,7 @@
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spnOrderFilter"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
                     android:layout_toEndOf="@+id/btnCancelDateRange"
                     android:layout_centerVertical="true"
                     android:dropDownVerticalOffset="40dp"  />
@@ -110,6 +111,14 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/tv_noData1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_data"
+                android:layout_gravity="center"
+                android:textStyle="italic"
                 android:visibility="gone"/>
             <ListView
                 android:id="@+id/lvCustomerOrderList"

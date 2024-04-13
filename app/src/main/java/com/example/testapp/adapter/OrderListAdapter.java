@@ -48,7 +48,6 @@ public class OrderListAdapter extends ArrayAdapter {
         tvRewardPoint = convertView.findViewById(R.id.tvRewardPoint);
 
 
-
         Order order = data.get(position);
 //        txtAddress.setText(order.getAddress());
         txtAddress.setText("35/2A, đường 339, phuờng Phước Long");

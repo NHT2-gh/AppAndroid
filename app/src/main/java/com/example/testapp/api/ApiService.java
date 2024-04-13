@@ -1,5 +1,6 @@
 package com.example.testapp.api;
 
+import com.example.testapp.model.Coupon;
 import com.example.testapp.model.Customer;
 import com.example.testapp.model.Order;
 import com.example.testapp.model.ProductSaleRequest;
@@ -33,7 +34,7 @@ public interface ApiService {
 //    String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
 
-    ApiService apiservice = new Retrofit.Builder().baseUrl("http://172.16.16.44:9999/").addConverterFactory(GsonConverterFactory.create(gson))
+    ApiService apiservice = new Retrofit.Builder().baseUrl("http://192.168.0.195:9999/").addConverterFactory(GsonConverterFactory.create(gson))
             .build().create(ApiService.class);
 
     @POST("auth/signup")
@@ -71,4 +72,6 @@ public interface ApiService {
     Call<ListEntityStatusResponse<Order>> getOrderByStatus(@Header("Authorization") String token, @Query("status") Integer status );
     @GET ("api/admin/order/date")
     Call<ListEntityStatusResponse<Order>> getOrderByDate(@Header("Authorization")String token, @Query("start") String start, @Query("end") String end);
+    @GET("api/coupon/all")
+    Call<ListEntityStatusResponse<Coupon>> getAllCoupon(@Header("Authorization") String token);
 }

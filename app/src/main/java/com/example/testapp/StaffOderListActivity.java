@@ -13,7 +13,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
@@ -46,7 +45,7 @@ public class StaffOderListActivity extends AppCompatActivity {
     OrderListAdapter orderAdapter;
     OrderStatusAdapter statusAdapter;
     ListView lvOrderList;
-    TextView txtStatus, tvSelectStarDate, tvSelectEndDate, tvLine;
+    TextView txtStatus, tvSelectStarDate, tvSelectEndDate, tvLine, tvNoData;
     Spinner spinnerList;
     ProgressBar proBarShowList;
     CardView btnShow;
@@ -69,6 +68,7 @@ public class StaffOderListActivity extends AppCompatActivity {
         tvSelectStarDate = findViewById(R.id.tv_selectStarDate);
         tvSelectEndDate = findViewById(R.id.tv_selectEndDate);
         tvLine = findViewById(R.id.tv_line);
+        tvNoData = findViewById(R.id.tv_noData1);
 
         proBarShowList = findViewById(R.id.proBar_showList);
 
@@ -82,6 +82,8 @@ public class StaffOderListActivity extends AppCompatActivity {
 
         proBarShowList.setVisibility(View.VISIBLE);
         getAllOrder(token);
+
+        tvNoData.setVisibility(View.GONE);
 
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,11 +129,18 @@ public class StaffOderListActivity extends AppCompatActivity {
                     ListEntityStatusResponse<Order> resultResponse = response.body();
                     if(resultResponse != null){
                     List<Order> orderList = resultResponse.getData();
-                        orderAdapter = new OrderListAdapter(StaffOderListActivity.this, R.layout.layout_item_order, orderList);
-                        lvOrderList.setAdapter(orderAdapter);
-                        proBarShowList.setVisibility(View.GONE);
+                        if(orderList.isEmpty()){
+                            tvNoData.setVisibility(View.VISIBLE);
+                        }else {
+                            orderAdapter = new OrderListAdapter(StaffOderListActivity.this, R.layout.layout_item_order, orderList);
+                            lvOrderList.setAdapter(orderAdapter);
+                            proBarShowList.setVisibility(View.GONE);
+                        }
                         Log.i("get all order: ", resultResponse.getMessage());
                     }
+                }else{
+                    tvNoData.setVisibility(View.VISIBLE);
+                    proBarShowList.setVisibility(View.GONE);
                 }
             }
             @Override
@@ -149,8 +158,12 @@ public class StaffOderListActivity extends AppCompatActivity {
                     ListEntityStatusResponse<Order> resultResponse = response.body();
                     if(resultResponse != null){
                         List<Order> listOrder = resultResponse.getData();
-                        orderAdapter = new OrderListAdapter(StaffOderListActivity.this, R.layout.layout_item_order, listOrder);
-                        lvOrderList.setAdapter(orderAdapter);
+                        if(listOrder.isEmpty()){
+                            tvNoData.setVisibility(View.VISIBLE);
+                        }else {
+                            orderAdapter = new OrderListAdapter(StaffOderListActivity.this, R.layout.layout_item_order, listOrder);
+                            lvOrderList.setAdapter(orderAdapter);
+                        }
                         Log.i("get order by status:", resultResponse.getMessage());
                     }
                 }

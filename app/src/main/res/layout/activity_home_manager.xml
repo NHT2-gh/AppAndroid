@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+    android:paddingTop="30dp"
+    android:background="@android:color/transparent"
     android:layout_height="match_parent"
     tools:context=".HomeManagerActivity">
     <RelativeLayout
@@ -105,7 +107,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="30dp"
+                        android:layout_marginRight="20dp"
                         app:cardCornerRadius="20dp"
                         android:backgroundTint="@color/top1Color">
                         <LinearLayout
@@ -170,13 +172,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
                     <androidx.cardview.widget.CardView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="30dp"
+                        android:layout_marginRight="20dp"
                         app:cardCornerRadius="20dp"
                         android:backgroundTint="@color/top3Color">
                         <LinearLayout

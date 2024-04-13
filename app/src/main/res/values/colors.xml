@@ -12,15 +12,18 @@
 <!--    main color-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="mainColor">#FFC67C4E</color>
+<!--    <color name="mainColor">#FFC67C4E</color>-->
+    <color name="mainColor">#B42329</color>
     <color name="darkGrey">#FF313131</color>
     <color name="green">#36C07E</color>
     <color name="lightGrey">#FFD4D4D4</color>
     <color name="red">#FF0000</color>
+
 <!--    text color-->
     <color name="smallTextColor">#FFA9A9A9</color>
     <color name="priceTextColor">#FF2F4B4E</color>
     <color name="TextLightColor">#FF313131</color>
+    <color name="TextGreyColor">#979797</color>
 
 <!--    color statistic-->
     <color name="top1Color">#f2b670</color>

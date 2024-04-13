@@ -13,6 +13,15 @@ public class Function {
         return vnCurrencyFormat.format(amount);
     }
 
+    public static String formatDateTimeToDate(String dateTime){
+        String result = "";
+        char[] chars = dateTime.toCharArray();
+        for (int i = 0; i < 10; i++) {
+                result += chars[i];
+        }
+        return  result;
+    }
+
     public static boolean setRequired(List<EditText> listEt, String message) {
         boolean check = true;
         for (int i = 0; i < listEt.size(); i++) {

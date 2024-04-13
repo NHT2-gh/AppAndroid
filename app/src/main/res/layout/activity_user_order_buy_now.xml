@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".UserOrderBuyNowActivity">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -132,7 +133,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:drawableStart="@drawable/icon_discount"
+                    android:drawableStart="@drawable/icon_left_menu_coupon_24"
                     android:drawableEnd="@drawable/icon_arrow_right_24"
                     android:text="Chưa áp dụng mã giảm giá"
                     android:textAllCaps="false"

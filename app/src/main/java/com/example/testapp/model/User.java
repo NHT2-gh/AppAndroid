@@ -6,8 +6,9 @@ public class User {
     private Long id;
 
     private Integer points;
-    private String username, password, role_name, token, first_name, last_name;
-
+    private String username, password, token, first_name, last_name;
+    private Role role;
+    private  String role_name;
     private LocalDateTime create_at, update_at;
     private boolean isActive;
 
@@ -15,18 +16,19 @@ public class User {
         super();
     }
 
-    public User(Long id, Integer points, String username, String password, String role_name, String token, String first_name, String last_name, LocalDateTime create_at, LocalDateTime update_at, boolean isActive) {
+    public User(Long id, Integer points, String username, String password,String role_name, Role role, String token, String first_name, String last_name, LocalDateTime create_at, LocalDateTime update_at, boolean isActive) {
         this.id = id;
         this.points = points;
         this.username = username;
         this.password = password;
-        this.role_name = role_name;
+        this.role = role;
         this.token = token;
         this.first_name = first_name;
         this.last_name = last_name;
         this.create_at = create_at;
         this.update_at = update_at;
         this.isActive = isActive;
+        this.role_name = role_name;
     }
 
     public Long getId() {
@@ -35,6 +37,10 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
     }
 
     public Integer getPoints() {
@@ -61,14 +67,9 @@ public class User {
         this.password = password;
     }
 
-    public String getRole_name() {
-        return role_name;
+    public Role getRole() {
+        return role;
     }
-
-    public void setRole_name(String role_name) {
-        this.role_name = role_name;
-    }
-
     public String getToken() {
         return token;
     }

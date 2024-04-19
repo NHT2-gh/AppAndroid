@@ -7,11 +7,12 @@
     android:orientation="vertical"
     >
     <TextView
-        android:layout_width="124dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:id="@+id/txtOrderStatus"
         android:text="androids"
         android:textSize="14dp"
+        android:paddingHorizontal="10dp"
         >
     </TextView>
 </LinearLayout>

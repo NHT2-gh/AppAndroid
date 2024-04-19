@@ -46,6 +46,9 @@ public interface ApiService {
     @PUT("auth/change/{username}")
     Call<ApiResponse> changePassword(@Path("username") String username, @Body User user);
 
+    @GET("auth/check/{username}")
+    Call<ApiResponse> checkUserNameExist(@Path("username") String username);
+
     @GET("api/users/find")
     Call<EntityStatusResponse<Customer>> getUserProfile(@Header("Authorization") String token);
 

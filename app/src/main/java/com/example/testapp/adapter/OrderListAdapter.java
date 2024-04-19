@@ -52,23 +52,32 @@ public class OrderListAdapter extends ArrayAdapter {
 //        txtAddress.setText(order.getAddress());
         txtAddress.setText("35/2A, đường 339, phuờng Phước Long");
         txtOrderPrice.setText(String.valueOf(Function.formatToVND(order.getTotal_price())));
-        tvRewardPoint.setText( "+ " +String.valueOf(order.getTotal_price() / 1000) + " điểm");
+        tvRewardPoint.setText("0 điểm");
 //        txtStatus.setText(order.getOrderType()+"  |  "+order.getStatus());
         txtCreatedDate.setText(order.getCreate_at());
 
         // set màu cho từng trạng thái đơn hàng
-        if (order.getStatus().equals(1)){
-            txtStatus.setText("Chờ thực hện");
+        if(order.getStatus().equals(0)){
+            txtStatus.setText("Chờ xác nhận");
             txtStatus.setBackgroundTintList (ContextCompat.getColorStateList(OrderListAdapter.this.getContext(), R.color.top1Color));
+        }
+        if (order.getStatus().equals(1)){
+            txtStatus.setText("Đã xác nhận");
+            txtStatus.setBackgroundTintList (ContextCompat.getColorStateList(OrderListAdapter.this.getContext(), R.color.top2Color));
         } else if (order.getStatus().equals(2)) {
             txtStatus.setText("Đang thực hiện");
-            txtStatus.setBackgroundTintList (ContextCompat.getColorStateList(OrderListAdapter.this.getContext(), R.color.top2Color));
+            txtStatus.setBackgroundTintList (ContextCompat.getColorStateList(OrderListAdapter.this.getContext(), R.color.top3Color));
         } else if (order.getStatus().equals(3)){
             txtStatus.setText("Đang vận chuyển");
-            txtStatus.setBackgroundTintList (ContextCompat.getColorStateList(OrderListAdapter.this.getContext(), R.color.top3Color));
-        } else {
-            txtStatus.setText("Đã hoàn thành");
             txtStatus.setBackgroundTintList (ContextCompat.getColorStateList(OrderListAdapter.this.getContext(), R.color.top4Color));
+        } else if(order.getStatus().equals(4)){
+            txtStatus.setText("Đã hoàn thành");
+            txtStatus.setBackgroundTintList (ContextCompat.getColorStateList(OrderListAdapter.this.getContext(), R.color.top5Color));
+            tvRewardPoint.setText( "+ " +String.valueOf(order.getTotal_price() / 1000) + " điểm");
+        }else if (order.getStatus().equals(5)){
+            txtStatus.setText("Đã hủy");
+            txtStatus.setBackgroundTintList (ContextCompat.getColorStateList(OrderListAdapter.this.getContext(), R.color.mainColor));
+
         }
 
 

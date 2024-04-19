@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testapp.api.ApiService;
+import com.example.testapp.model.Role;
 import com.example.testapp.response.ApiResponse;
 
 import com.example.testapp.model.User;
@@ -81,7 +82,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private void checkInput() {
         List<EditText> listEditText = Arrays.asList(etFirstName,etLastName, etPhone, etPassword, etRePassword);
         if(setRequired(listEditText, "Vui lòng điền đầy đủ thông tin")) {
-            if (isValidPhoneNumber(etPhone.getText().toString())) {
+            if (isValidPhoneNumber(etPhone)) {
                 if (etPassword.getText().toString().equals(etRePassword.getText().toString())) {
                     sendUser();
                 } else {
@@ -103,7 +104,7 @@ public class RegistrationActivity extends AppCompatActivity {
         progressBarLoading.setVisibility(View.VISIBLE);
         btnRegister.setVisibility(View.GONE);
         // get data
-        User user = new User(null, 0, etPhone.getText().toString(), etPassword.getText().toString(), "CUSTOMER", null,etFirstName.getText().toString(),etLastName.getText().toString(), null, null, true);
+        User user = new User(null, 0, etPhone.getText().toString(), etPassword.getText().toString(),"CUSTOMER", null,null,etFirstName.getText().toString(),etLastName.getText().toString(), null, null, true);
         ApiService.apiservice.sendUser(user).enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -118,6 +119,8 @@ public class RegistrationActivity extends AppCompatActivity {
                     }
                 } else{
                     code = response.code();
+                    progressBarLoading.setVisibility(View.GONE);
+                    btnRegister.setVisibility(View.VISIBLE);
                     if(code == HttpsURLConnection.HTTP_CONFLICT){
                         Toast.makeText(RegistrationActivity.this,"Số điện thoại đã được đăng ký", Toast.LENGTH_SHORT).show();
                     } else if (code == HttpsURLConnection.HTTP_INTERNAL_ERROR){
@@ -128,6 +131,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
+                progressBarLoading.setVisibility(View.GONE);
                 Toast.makeText(RegistrationActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

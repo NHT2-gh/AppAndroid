@@ -34,7 +34,6 @@ android {
 
 dependencies {
     // Chart and graph library
-
     implementation ("com.github.blackfizz:eazegraph:1.2.5l@aar")
     implementation ("com.nineoldandroids:library:2.4.0")
 

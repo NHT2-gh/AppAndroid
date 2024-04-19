@@ -12,10 +12,6 @@ public class ApiResponse {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public boolean isStatus() {
         return status;
     }
@@ -28,9 +24,6 @@ public class ApiResponse {
         return code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
 
     public ApiResponse(String message, boolean status, int code) {
         super();

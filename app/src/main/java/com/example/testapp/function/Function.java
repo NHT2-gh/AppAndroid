@@ -33,10 +33,19 @@ public class Function {
         return check;
     }
 
-    public static boolean isValidPhoneNumber(String phoneNumber) {
-        if (!phoneNumber.startsWith("+84")) {
+    public static boolean isValidPhoneNumber(EditText phoneNumber) {
+        if (!phoneNumber.getText().toString().startsWith("+84")) {
+            phoneNumber.setError("Số điện thoại bắt đầu bằng +84");
             return false;
-        } else if (phoneNumber.length() != 12) {
+        } else if (phoneNumber.getText().toString().length() != 12) {
+            phoneNumber.setError("Độ dài của số điện thoại là 12 kí tự");
+            return false;
+        }
+        return  true;
+    }
+
+    public static boolean isValidPassword(EditText password) {
+        if (password.getText().toString().length() >= 6) {
             return false;
         }
         return true;

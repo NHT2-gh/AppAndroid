@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.testapp.api.ApiService;
+import com.example.testapp.function.Function;
 import com.example.testapp.model.Order;
 import com.example.testapp.response.EntityStatusResponse;
 
@@ -30,7 +31,7 @@ import retrofit2.Response;
 
 public class UserDeliveryProcessActivity extends AppCompatActivity {
     private static final int REQUEST_CALL_PHONE_PERMISSION = 1;
-    private TextView tvStatusName, tvLineStatus2, tvLineStatus3, tvLineStatus4;
+    private TextView tvStatusName, tvLineStatus1, tvLineStatus2, tvLineStatus3, tvLineStatus4, tvOrderId, tvTotalQuantity, tvTotalPrice;
     private ImageView tvStatus;
     private ImageButton ibCallShipper;
     private final Handler handler = new Handler();
@@ -47,7 +48,7 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPerfs", Context.MODE_PRIVATE);
         String token = "Bearer " + sharedPreferences.getString("token", null);
 
-        getOrderById(token);
+        getOrderById(token,11L);
             ibCallShipper.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -57,13 +58,19 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
         }
 
     private  void showStatusOrder(Integer status_id){
+        if(status_id == 0){
+            tvStatusName.setText(getString(R.string.statusName_0));
+            Glide.with(this)
+                    .load(R.drawable.gif_step0)
+                    .into(tvStatus);
+        }
         // Dat thanh cong
-        if(status_id == 1){
+        else if(status_id == 1){
             tvStatusName.setText(getString(R.string.statusName_1));
             Glide.with(this)
                     .load(R.drawable.gif_step1)
                     .into(tvStatus);
-
+            tvLineStatus1.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
         }
         // Dang thuc hien
         else if (status_id ==2){
@@ -71,6 +78,7 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
             Glide.with(this)
                     .load(R.drawable.gif_step2)
                     .into(tvStatus);
+            tvLineStatus1.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
             tvLineStatus2.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
         }
         // Dang giao hang
@@ -79,6 +87,8 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
             Glide.with(this)
                     .load(R.drawable.gif_step3)
                     .into(tvStatus);
+            tvLineStatus1.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
+            tvLineStatus2.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
             tvLineStatus3.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
         }
         // Giao thanh cong
@@ -87,12 +97,15 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
             Glide.with(this)
                     .load(R.drawable.gif_step4)
                     .into(tvStatus);
+            tvLineStatus1.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
+            tvLineStatus2.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
+            tvLineStatus3.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
             tvLineStatus4.setBackgroundTintList(ContextCompat.getColorStateList(UserDeliveryProcessActivity.this, R.color.green));
-        }
     }
+}
 
-    private void getOrderById(String token) {
-        ApiService.apiservice.getOrderById(token, 1L).enqueue(new Callback<EntityStatusResponse<Order>>() {
+    private void getOrderById(String token, Long id) {
+        ApiService.apiservice.getOrderById(token, id).enqueue(new Callback<EntityStatusResponse<Order>>() {
             @Override
             public void onResponse(Call<EntityStatusResponse<Order>> call, Response<EntityStatusResponse<Order>> response) {
                 if (response.isSuccessful()){
@@ -100,11 +113,14 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
                     if(resultResponse != null){
                         Order orderResponse = resultResponse.getData();
                         showStatusOrder(orderResponse.getStatus());
+                        tvOrderId.setText(id.toString());
+                        tvTotalQuantity.setText(orderResponse.getTotal_quantity().toString());
+                        tvTotalPrice.setText(Function.formatToVND(orderResponse.getTotal_price()));
                         Log.i("status",orderResponse.getStatus().toString());
                         Log.i("message", "onResponse: " + resultResponse.getMessage());
                     }
                 }
-                handler.postDelayed(() -> getOrderById(token), 3000); // 3 giây
+                handler.postDelayed(() -> getOrderById(token,id), 10000); // 3 giây
             }
 
             @Override
@@ -116,7 +132,7 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
 
     private void autoCallShipper() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+84845002405")));
+            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+" + "")));
         } else {
             // Quyền chưa được cấp, bạn có thể yêu cầu người dùng cấp quyền bằng cách hiển thị một hộp thoại yêu cầu quyền
             ActivityCompat.requestPermissions(this, new String[]{
@@ -129,9 +145,14 @@ public class UserDeliveryProcessActivity extends AppCompatActivity {
         tvStatus = findViewById(R.id.iv_status);
         ibCallShipper = findViewById(R.id.ib_autoCallShipper);
 
+        tvLineStatus1 = findViewById(R.id.status_1);
         tvLineStatus2 = findViewById(R.id.status_2);
         tvLineStatus3 = findViewById(R.id.status_3);
         tvLineStatus4 = findViewById(R.id.status_4);
         tvStatusName = findViewById(R.id.tv_statusName);
+
+        tvOrderId = findViewById(R.id.tv_orderId);
+        tvTotalQuantity = findViewById(R.id.tv_totalQuantity);
+        tvTotalPrice = findViewById(R.id.tv_totalPrice);
     }
 }

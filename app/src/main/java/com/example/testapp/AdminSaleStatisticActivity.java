@@ -144,7 +144,6 @@ public class AdminSaleStatisticActivity extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                 }
-
             }
             @Override
             public void onFailure(Call<ListEntityStatusResponse<StatisticRequest>> call, Throwable t) {

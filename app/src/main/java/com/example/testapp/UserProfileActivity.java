@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +32,7 @@ import retrofit2.Response;
 public class UserProfileActivity extends AppCompatActivity {
     private TextView tvPoint;
     private EditText etFullName, etPhoneUser, etAddressUser, etEmail;
+    private Button btnLogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +48,20 @@ public class UserProfileActivity extends AppCompatActivity {
 
         getInfoUser(token);
 
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openLoginActivity();
+            }
+        });
+
     }
+
+    private void openLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     private void getInfoUser(String token){
         ApiService.apiservice.getUserProfile(token).enqueue(new Callback<EntityStatusResponse<Customer>>() {
             @Override
@@ -57,16 +74,14 @@ public class UserProfileActivity extends AppCompatActivity {
                         etAddressUser.setText(profileResponse.getAddress());
                         etPhoneUser.setText(profileResponse.getPhone());
                         etEmail.setText(profileResponse.getEmail());
-
                         tvPoint.setText(profileResponse.getUser().getPoints().toString() + " điểm");
-
-                        Log.i("profile response: ", resultResponse.getMessage());
+                        Log.i("message profile response: ", resultResponse.getMessage());
                     }
                 }
             }
             @Override
             public void onFailure(Call<EntityStatusResponse<Customer>> call, Throwable t) {
-                Log.i("error", t.getMessage());
+                Log.i("error profile", t.getMessage());
             }
         });
 
@@ -80,5 +95,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
         tvPoint = findViewById(R.id.tv_pointUser);
 
+        btnLogout = findViewById(R.id.btn_logout);
     }
 }

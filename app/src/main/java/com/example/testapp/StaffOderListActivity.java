@@ -117,8 +117,9 @@ public class StaffOderListActivity extends AppCompatActivity {
         listStatus.add(new OrderStatus(0,"Chờ xác nhận"));
         listStatus.add(new OrderStatus(1,"Đã xác nhận"));
         listStatus.add(new OrderStatus(2,"Đang thực hiện"));
-        listStatus.add(new OrderStatus(3,"Đang giao"));
+        listStatus.add(new OrderStatus(3,"Đang vận chuyển"));
         listStatus.add(new OrderStatus(4,"Đã hoàn thành"));
+        listStatus.add(new OrderStatus(5,"Đã hủy"));
     }
 
     private void getAllOrder(String token){
@@ -194,6 +195,7 @@ public class StaffOderListActivity extends AppCompatActivity {
                 tvSelectEndDate.setText(showEndDate);
                 tvLine.setVisibility(View.VISIBLE);
                 tvSelectEndDate.setVisibility(View.VISIBLE);
+                Log.i("test", dateStart + " " + dateEnd);
                 getOrderByDate(token, dateStart, dateEnd);
             }
         });
@@ -217,7 +219,7 @@ public class StaffOderListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ListEntityStatusResponse<Order>> call, Throwable t) {
-                Log.i("erro api get order by date ", t.getMessage());
+                Log.i("error api get order by date ", t.getMessage());
             }
         });
     }

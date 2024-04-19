@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,17 +15,14 @@ import com.example.testapp.api.ApiService;
 import com.example.testapp.model.User;
 import com.example.testapp.response.ApiResponse;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SetNewPassword extends AppCompatActivity {
+public class SetNewPasswordActivity extends AppCompatActivity {
     EditText et_setNewPass, et_rePass;
     Button btnLogin;
 
@@ -58,18 +53,18 @@ public class SetNewPassword extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         ApiResponse changePassResult = response.body();
                         if (changePassResult != null){
-                            Toast.makeText(SetNewPassword.this, changePassResult.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SetNewPasswordActivity.this, changePassResult.getMessage(), Toast.LENGTH_SHORT).show();
                             openActivityLogin();
                         }
                     }else {
                         code = response.code();
-                        Toast.makeText(SetNewPassword.this, "Thiết lập mật khẩu mới thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SetNewPasswordActivity.this, "Thiết lập mật khẩu mới thất bại", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ApiResponse> call, Throwable t) {
-                    Toast.makeText(SetNewPassword.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SetNewPasswordActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }

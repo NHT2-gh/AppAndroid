@@ -2,19 +2,19 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="AdminAddCouponActivity">
+      <entry key="ForgotPasswordActivity">
         <State />
       </entry>
-      <entry key="AdminCouponListActivity">
+      <entry key="LoginActivity">
         <State />
       </entry>
-      <entry key="AdminProductStatisticsActivity">
+      <entry key="StaffOderListActivity">
         <State />
       </entry>
-      <entry key="UserCouponActivity">
+      <entry key="UserDeliveryProcessActivity">
         <State />
       </entry>
-      <entry key="UserOrderBuyNowActivity">
+      <entry key="UserProfileActivity">
         <State />
       </entry>
       <entry key="app">

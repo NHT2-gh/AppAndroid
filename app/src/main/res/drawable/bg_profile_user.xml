@@ -10,7 +10,7 @@
             </gradient>
         </shape>
     </item>
-    <item android:top="200dp">
+    <item android:top="150dp">
         <shape android:shape="rectangle">
             <solid android:color="@color/bgColor_l3"></solid>
         </shape>

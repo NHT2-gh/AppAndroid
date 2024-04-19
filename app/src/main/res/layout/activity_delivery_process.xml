@@ -55,8 +55,6 @@
                     android:visibility="gone" />
 
             </FrameLayout>
-
-
             <TextView
                 android:id="@+id/tv_statusName"
                 android:layout_width="wrap_content"
@@ -76,7 +74,7 @@
                     android:layout_height="5dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/style_button"
-                    android:backgroundTint="@color/green" />
+                    android:backgroundTint="@color/lightGrey" />
                 <TextView
                     android:id="@+id/status_2"
                     android:layout_width="60dp"
@@ -138,7 +136,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Số lượng"
+                            android:text="Số lượng: "
                             android:layout_marginRight="5dp"/>
                         <TextView
                             android:id="@+id/tv_totalQuantity"
@@ -154,7 +152,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tồng tiền"
+                            android:text="Tồng tiền: "
                             android:layout_marginRight="5dp"/>
                         <TextView
                             android:id="@+id/tv_totalPrice"

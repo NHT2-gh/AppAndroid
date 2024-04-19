@@ -9,9 +9,11 @@
     <color name="bgMain_color1">#321711</color>
     <color name="bgMain_color2">#0C0602</color>
     <color name="bgMain_color3">#251408</color>
-<!--    main color-->
+<!--    base color-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<!--    <color name="yellow">#</color>-->
+
 <!--    <color name="mainColor">#FFC67C4E</color>-->
     <color name="mainColor">#B42329</color>
     <color name="darkGrey">#FF313131</color>

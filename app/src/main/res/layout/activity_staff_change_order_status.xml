@@ -47,7 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,20 +77,19 @@
                         android:textStyle="bold"
                         android:textSize="18sp"
                         android:textColor="@color/black"
-                        android:layout_marginBottom="15dp"
+                        android:layout_marginBottom="10dp"
                         />
                     <TextView
                         android:id="@+id/tv_orderAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
+                        android:text="123"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:layout_marginBottom="10dp"
+                        android:textSize="16sp"
                         />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content" />-->
                 </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"

@@ -70,8 +70,8 @@ public class CouponAdapter extends ArrayAdapter {
                 .load(coupon.getImage())
                 .into(holder.ivCoupon);
         if(holder.tvCouponId != null){
-            holder.tvCouponId.setText("Mã Coupon: " + coupon.getCoupon_id().toString());
-            holder.tvStatus.setText(coupon.getStatus());
+        holder.tvCouponId.setText("Mã Coupon: " + coupon.getCoupon_id().toString());
+        holder.tvStatus.setText(coupon.getStatus());
 //            if(coupon.getStatus().equals(1)){
 //                holder.tvStatus.setText("Active");
 //                holder.tvStatus.setTextColor(ContextCompat.getColorStateList(CouponAdapter.this.getContext(), R.color.green));
@@ -82,5 +82,5 @@ public class CouponAdapter extends ArrayAdapter {
 //            }
         }
         return convertView;
-    }
-}
+        }
+        }

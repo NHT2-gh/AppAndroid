@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.example.testapp.R;
+import com.example.testapp.StaffOrderDetailActivity;
+import com.example.testapp.UserOrderDetailActivity;
 import com.example.testapp.function.Function;
 import com.example.testapp.model.OrderDetail;
 
@@ -32,7 +34,7 @@ public class ProductDetailOrderAdapter extends ArrayAdapter {
         this.data = data;
     }
     static class ViewHolder {
-         TextView tvProductName, tvProductQuantity, tvProductSize, tvAmount;
+         TextView tvProductName, tvProductQuantity, tvProductSize, tvAmount, tvOpenReview;
          ImageView ivProductImg;
     }
     @NonNull
@@ -48,6 +50,7 @@ public class ProductDetailOrderAdapter extends ArrayAdapter {
             holder.tvProductSize = convertView.findViewById(R.id.tv_productSize);
             holder.ivProductImg = convertView.findViewById(R.id.img_product);
             holder.tvAmount = convertView.findViewById(R.id.tv_amount);
+            holder.tvOpenReview = convertView.findViewById(R.id.tv_openReviewActivity);
 
             convertView.setTag(holder);
         }else {
@@ -62,6 +65,12 @@ public class ProductDetailOrderAdapter extends ArrayAdapter {
             Glide.with(convertView)
                     .load(orderDetail.getProduct().getImage())
                      .into(holder.ivProductImg);
+
+            if (context instanceof UserOrderDetailActivity) {
+                holder.tvOpenReview.setVisibility(View.VISIBLE);
+            } else if (context instanceof StaffOrderDetailActivity) {
+                holder.tvOpenReview.setVisibility(View.GONE);
+            }
 
         return convertView;
     }

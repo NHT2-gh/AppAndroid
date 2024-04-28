@@ -15,7 +15,9 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.example.testapp.R;
+import com.example.testapp.StaffOderListActivity;
 import com.example.testapp.StaffOrderDetailActivity;
+import com.example.testapp.UserOrderDetailActivity;
 import com.example.testapp.function.Function;
 import com.example.testapp.model.Order;
 
@@ -56,6 +58,7 @@ public class OrderListAdapter extends ArrayAdapter {
 //        txtStatus.setText(order.getOrderType()+"  |  "+order.getStatus());
         txtCreatedDate.setText(order.getCreate_at());
 
+
         // set màu cho từng trạng thái đơn hàng
         if(order.getStatus().equals(0)){
             txtStatus.setText("Chờ xác nhận");
@@ -79,22 +82,6 @@ public class OrderListAdapter extends ArrayAdapter {
             txtStatus.setBackgroundTintList (ContextCompat.getColorStateList(OrderListAdapter.this.getContext(), R.color.mainColor));
 
         }
-
-
-
-        // click xem chi tiết đơn hàng
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(order != null){
-                    Long orderId = order.getOrder_id();
-                    Intent intent = new Intent(context, StaffOrderDetailActivity.class);
-                    intent.putExtra("orderId",orderId);
-                    context.startActivity(intent);
-                }
-
-            }
-        });
         return convertView;
     }
 

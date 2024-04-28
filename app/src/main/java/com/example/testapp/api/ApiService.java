@@ -34,7 +34,7 @@ public interface ApiService {
 //    String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
 
-    ApiService apiservice = new Retrofit.Builder().baseUrl("http://192.168.0.195:9999/").addConverterFactory(GsonConverterFactory.create(gson))
+    ApiService apiservice = new Retrofit.Builder().baseUrl("http://192.168.1.5:9999/").addConverterFactory(GsonConverterFactory.create(gson))
             .build().create(ApiService.class);
 
     @POST("auth/signup")
@@ -53,13 +53,12 @@ public interface ApiService {
     Call<EntityStatusResponse<Customer>> getUserProfile(@Header("Authorization") String token);
 
     //statistic
-    @GET("api/statistic/product")
+    @GET("api/admin/statistic/product")
     Call<ListEntityStatusResponse<ProductSaleRequest>> getStatisticProduct(@Header("Authorization") String token);
-
-    @GET("api/statistic/year")
+    @GET("api/admin/statistic/year")
     Call<ListEntityStatusResponse<StatisticRequest>> getStatisticYear(@Header("Authorization") String token, @Query("year") String year);
 
-    @GET("api/statistic/date")
+    @GET("api/admin/statistic/date")
     Call<ListEntityStatusResponse<ProductSaleRequest>> getStatisticProductByDate(@Header("Authorization") String token, @Query("start") String start, @Query("end") String end);
 
     //order
@@ -75,6 +74,9 @@ public interface ApiService {
     Call<ListEntityStatusResponse<Order>> getOrderByStatus(@Header("Authorization") String token, @Query("status") Integer status );
     @GET ("api/admin/order/date")
     Call<ListEntityStatusResponse<Order>> getOrderByDate(@Header("Authorization")String token, @Query("start") String start, @Query("end") String end);
+    @GET("api/order/all")
+    Call<ListEntityStatusResponse<Order>> getOrderHistoryByJwt(@Header("Authorization") String token);
+
     @GET("api/coupon/all")
     Call<ListEntityStatusResponse<Coupon>> getAllCoupon(@Header("Authorization") String token);
 }

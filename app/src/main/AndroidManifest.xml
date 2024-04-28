@@ -21,8 +21,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".UserReviewActivity"
+            android:name=".UserOrderHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UserOrderDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".UserReviewActivity"
+            android:exported="true" />
         <activity
             android:name=".UserCouponDetailActivity"
             android:exported="false" />

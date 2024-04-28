@@ -1,12 +1,11 @@
 package com.example.testapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.testapp.adapter.ProductDetailOrderAdapter;
 import com.example.testapp.api.ApiService;
@@ -30,9 +36,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StaffOrderDetailActivity extends AppCompatActivity {
+public class UserOrderDetailActivity extends AppCompatActivity {
     private ListView lvListProduct;
-    private Button btnUpdateStatus;
+    private Button btnUpdateStatus, btnOpenReview;
     private List<OrderDetail> data = new ArrayList<>();
     private Toolbar tb_app_bar;
     private ProductDetailOrderAdapter adapter_productDetail;
@@ -43,11 +49,17 @@ public class StaffOrderDetailActivity extends AppCompatActivity {
 
     private LinearLayout lnl_showOrderDetail;
     private final Handler handler = new Handler();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_staff_detail_order);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_user_order_detail);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
         setControl();
         setEvent();
     }
@@ -56,6 +68,7 @@ public class StaffOrderDetailActivity extends AppCompatActivity {
         lvListProduct = findViewById(R.id.lv_listProduct);
 
         btnUpdateStatus = findViewById(R.id.btn_updateStatus);
+        btnOpenReview = findViewById(R.id.btn_openReview);
 
         tvOrderId = findViewById(R.id.tv_orderId);
         tvProductPrice = findViewById(R.id.tv_productPrice);
@@ -81,27 +94,21 @@ public class StaffOrderDetailActivity extends AppCompatActivity {
         Long orderId = getIntent().getLongExtra("orderId", 0);
         getOrderById(token, orderId);
 
+        btnOpenReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openUserReviewActivity();
+            }
+        });
     }
 
-    private void showStatusName(Integer status_id) {
-        btnUpdateStatus.setVisibility(View.VISIBLE);
-        tvCompletedOrder.setVisibility(View.GONE);
-        if (status_id == 0) {
-            btnUpdateStatus.setText("Nhận đơn");
-        } else if (status_id == 1) {
-            btnUpdateStatus.setText("Đang thực hiện");
-        } else if (status_id == 2) {
-            btnUpdateStatus.setText("Đang giao");
-        } else if (status_id == 3) {
-            btnUpdateStatus.setText("Đã giao");
-        } else if (status_id == 4) {
-            btnUpdateStatus.setVisibility(View.GONE);
-            tvCompletedOrder.setVisibility(View.VISIBLE);
-        }
-
+    private void openUserReviewActivity() {
+        Intent intent = new Intent(this, UserReviewActivity.class);
+        startActivity(intent);
     }
 
     private void getOrderById(String token, Long orderId) {
+        ArrayList<OrderDetail> orderDetailsReview = new ArrayList<>();
         ApiService.apiservice.getOrderById(token, orderId).enqueue(new Callback<EntityStatusResponse<Order>>() {
             @Override
             public void onResponse(Call<EntityStatusResponse<Order>> call, Response<EntityStatusResponse<Order>> response) {
@@ -111,6 +118,8 @@ public class StaffOrderDetailActivity extends AppCompatActivity {
 
                         proBar_loading.setVisibility(View.GONE);
                         lnl_showOrderDetail.setVisibility(View.VISIBLE);
+
+
                         //get info order
                         Order orderResponse = resultResponse.getData();
 
@@ -128,7 +137,6 @@ public class StaffOrderDetailActivity extends AppCompatActivity {
 
                         //show statusName for button change status
                         Log.i("statusId", orderResponse.getStatus().toString());
-                        showStatusName(orderResponse.getStatus());
 
                         //set title action bar
                         tb_app_bar.setTitle(orderResponse.getUpdate_at().toString());
@@ -141,8 +149,24 @@ public class StaffOrderDetailActivity extends AppCompatActivity {
 
                         //set data for list view show order detail
                         List<OrderDetail> listOrderDetail = orderResponse.getOrder_detail();
-                        adapter_productDetail = new ProductDetailOrderAdapter(StaffOrderDetailActivity.this, R.layout.layout_item_product_order, listOrderDetail);
+
+                        adapter_productDetail = new ProductDetailOrderAdapter(UserOrderDetailActivity.this, R.layout.layout_item_product_order, listOrderDetail);
                         lvListProduct.setAdapter(adapter_productDetail);
+
+                        String productName = listOrderDetail.get(0).getProduct().getProduct_name();
+
+                        orderDetailsReview.add(new OrderDetail(null, listOrderDetail.get(0).getPrice(), null, listOrderDetail.get(0).getProduct()));
+
+                        for (int i = 1; i < listOrderDetail.size(); i++) {
+                            if (!listOrderDetail.get(i).getProduct().getProduct_name().equals(productName)) {
+                                orderDetailsReview.add(new OrderDetail(null, listOrderDetail.get(i).getPrice(), null, listOrderDetail.get(i).getProduct()));
+                                productName = listOrderDetail.get(i).getProduct().getProduct_name();
+                            }
+                        }
+                        Intent intent = new Intent(UserOrderDetailActivity.this, UserReviewActivity.class);
+                        intent.putParcelableArrayListExtra("orderList", (ArrayList<? extends Parcelable>) orderDetailsReview);
+                        startActivity(intent);
+                        Log.i("listReview", String.valueOf(orderDetailsReview.get(0).getProduct().getProduct_name()));
 
                         //set height for list view
                         if (listOrderDetail.size() <= 3){
@@ -150,6 +174,14 @@ public class StaffOrderDetailActivity extends AppCompatActivity {
                         }else {
                             lvListProduct.getLayoutParams().height = 690;
                         }
+
+                        btnUpdateStatus.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                updateStatusOrder(token,orderResponse.getStatus()+1,1L);
+                                getOrderById(token, 1L);
+                            }
+                        });
 
                         Log.i("status", orderResponse.getStatus().toString());
                         Log.i("message", "onResponse: " + resultResponse.getMessage());
@@ -187,6 +219,4 @@ public class StaffOrderDetailActivity extends AppCompatActivity {
         });
 
     }
-
-
 }

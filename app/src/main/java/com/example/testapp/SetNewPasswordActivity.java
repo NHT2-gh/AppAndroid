@@ -1,5 +1,6 @@
 package com.example.testapp;
 
+import static com.example.testapp.function.Function.isValidPassword;
 import static com.example.testapp.function.Function.setRequired;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,14 +28,14 @@ public class SetNewPasswordActivity extends AppCompatActivity {
     Button btnLogin;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_new_password);
-        setControl();
-        setEvent();
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_set_new_password);
+            setControl();
+            setEvent();
 
-    }
-    private void setControl() {
+        }
+        private void setControl() {
         btnLogin = findViewById(R.id.btnLogin);
         et_setNewPass = findViewById(R.id.et_setNewPassword);
         et_rePass = findViewById(R.id.et_rePassword);
@@ -77,13 +78,14 @@ public class SetNewPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 List<EditText> listEditText = Arrays.asList(et_setNewPass, et_rePass);
-                if(setRequired(listEditText, "Vui lòng điền đầy đủ thông tin")) {
+                if(setRequired(listEditText, "Vui lòng điền đầy đủ thông tin") || isValidPassword(et_setNewPass)) {
                         if (et_setNewPass.getText().toString().equals(et_rePass.getText().toString())) {
                         } else {
                             et_rePass.setError("Xác nhận mật khẩu không khớp");
                         }
                         putUser();
-                }
+                }else
+                    Toast.makeText(SetNewPasswordActivity.this, "Mật khẩu phải trên 6 kí tự", Toast.LENGTH_SHORT).show();
             }
 
         });

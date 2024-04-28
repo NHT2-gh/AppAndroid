@@ -7,13 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
@@ -27,7 +26,6 @@ import com.example.testapp.api.ApiService;
 import com.example.testapp.model.Order;
 import com.example.testapp.model.OrderStatus;
 import com.example.testapp.response.ListEntityStatusResponse;
-import com.google.android.gms.common.api.Api;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
@@ -41,7 +39,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StaffOderListActivity extends AppCompatActivity {
+public class UserOrderHistoryActivity extends AppCompatActivity {
     private List<OrderStatus> listStatus = new ArrayList<>();
     OrderListAdapter orderAdapter;
     OrderStatusAdapter statusAdapter;
@@ -50,16 +48,20 @@ public class StaffOderListActivity extends AppCompatActivity {
     Spinner spinnerList;
     ProgressBar proBarShowList;
     CardView btnShow;
-
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_staff_oder_list);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_user_order_history);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
         setControl();
         setEvent();
     }
-
     private void setControl() {
         lvOrderList = findViewById(R.id.lvCustomerOrderList);
 
@@ -88,9 +90,9 @@ public class StaffOderListActivity extends AppCompatActivity {
 
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
-        public void onClick(View v) {
-            openDatePicker(token);
-        }
+            public void onClick(View v) {
+                openDatePicker(token);
+            }
         });
 
         statusAdapter = new OrderStatusAdapter(this, R.layout.layout_item_order_status, listStatus);
@@ -124,27 +126,30 @@ public class StaffOderListActivity extends AppCompatActivity {
     }
 
     private void getAllOrder(String token){
-        ApiService.apiservice.getAllOrder(token).enqueue(new Callback<ListEntityStatusResponse<Order>>() {
+        ApiService.apiservice.getOrderHistoryByJwt(token).enqueue(new Callback<ListEntityStatusResponse<Order>>() {
             @Override
             public void onResponse(Call<ListEntityStatusResponse<Order>> call, Response<ListEntityStatusResponse<Order>> response) {
                 if(response.isSuccessful()){
                     ListEntityStatusResponse<Order> resultResponse = response.body();
                     if(resultResponse != null){
-                    List<Order> orderList = resultResponse.getData();
+                        List<Order> orderList = resultResponse.getData();
                         if(orderList.isEmpty()){
                             tvNoData.setVisibility(View.VISIBLE);
+                            proBarShowList.setVisibility(View.GONE);
                         }else {
-                            orderAdapter = new OrderListAdapter(StaffOderListActivity.this, R.layout.layout_item_order, orderList);
+                            orderAdapter = new OrderListAdapter(UserOrderHistoryActivity.this, R.layout.layout_item_order, orderList);
                             lvOrderList.setAdapter(orderAdapter);
                             lvOrderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     // Lấy dữ liệu từ item được click
                                     Order order = (Order) parent.getItemAtPosition(position);
+
                                     // Lấy ID của Order
                                     Long orderId = order.getOrder_id();
+
                                     // Chuyển dữ liệu đến Activity mới để hiển thị chi tiết
-                                    Intent intent = new Intent(StaffOderListActivity.this, StaffOrderDetailActivity.class);
+                                    Intent intent = new Intent(UserOrderHistoryActivity.this, UserOrderDetailActivity.class);
                                     intent.putExtra("orderId", orderId);
                                     startActivity(intent);
                                 }
@@ -176,10 +181,9 @@ public class StaffOderListActivity extends AppCompatActivity {
                         if(listOrder.isEmpty()){
                             tvNoData.setVisibility(View.VISIBLE);
                         }else {
-                            orderAdapter = new OrderListAdapter(StaffOderListActivity.this, R.layout.layout_item_order, listOrder);
+                            orderAdapter = new OrderListAdapter(UserOrderHistoryActivity.this, R.layout.layout_item_order, listOrder);
                             lvOrderList.setAdapter(orderAdapter);
                         }
-                        Log.i("get order by status:", resultResponse.getMessage());
                     }
                 }
             }
@@ -210,31 +214,31 @@ public class StaffOderListActivity extends AppCompatActivity {
                 tvLine.setVisibility(View.VISIBLE);
                 tvSelectEndDate.setVisibility(View.VISIBLE);
                 Log.i("test", dateStart + " " + dateEnd);
-                getOrderByDate(token, dateStart, dateEnd);
+//                getOrderByDate(token, dateStart, dateEnd);
             }
         });
         materialDatePicker.show(getSupportFragmentManager(), "tag");
     }
 
-    private void getOrderByDate(String token, String startDate, String endDate){
-        ApiService.apiservice.getOrderByDate(token, startDate, endDate).enqueue(new Callback<ListEntityStatusResponse<Order>>() {
-            @Override
-            public void onResponse(Call<ListEntityStatusResponse<Order>> call, Response<ListEntityStatusResponse<Order>> response) {
-                if(response.isSuccessful()){
-                    ListEntityStatusResponse<Order> resultResponse = response.body();
-                    if(resultResponse != null){
-                        List<Order> listOrder = resultResponse.getData();
-                        orderAdapter = new OrderListAdapter(StaffOderListActivity.this, R.layout.layout_item_order, listOrder);
-                        lvOrderList.setAdapter(orderAdapter);
-                        Log.i("get order by status:", resultResponse.getMessage());
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ListEntityStatusResponse<Order>> call, Throwable t) {
-                Log.i("error api get order by date ", t.getMessage());
-            }
-        });
-    }
+//    private void getOrderByDate(String token, String startDate, String endDate){
+//        ApiService.apiservice.getOrderByDate(token, startDate, endDate).enqueue(new Callback<ListEntityStatusResponse<Order>>() {
+//            @Override
+//            public void onResponse(Call<ListEntityStatusResponse<Order>> call, Response<ListEntityStatusResponse<Order>> response) {
+//                if(response.isSuccessful()){
+//                    ListEntityStatusResponse<Order> resultResponse = response.body();
+//                    if(resultResponse != null){
+//                        List<Order> listOrder = resultResponse.getData();
+//                        orderAdapter = new OrderListAdapter(UserOrderHistoryActivity.this, R.layout.layout_item_order, listOrder);
+//                        lvOrderList.setAdapter(orderAdapter);
+//                        Log.i("get order by status:", resultResponse.getMessage());
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ListEntityStatusResponse<Order>> call, Throwable t) {
+//                Log.i("error api get order by date ", t.getMessage());
+//            }
+//        });
+//    }
 }

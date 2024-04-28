@@ -63,8 +63,9 @@
                         android:gravity="right"/>
                 </LinearLayout>
                 <ListView
+                    android:id="@+id/lv_listProductReview"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp" />
+                    android:layout_height="300dp" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -113,6 +114,34 @@
                     android:layout_height="130dp"
                     android:padding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="bottom">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/btnLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/style_button"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        android:text="Gửi"
+                        android:textSize="18dp" />
+                    <ProgressBar
+                        android:id="@+id/proBar_login"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/lightGrey"
+                        android:visibility="gone"/>
+                </FrameLayout>
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

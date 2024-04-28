@@ -220,9 +220,10 @@ public class LoginActivity extends AppCompatActivity {
                             openActivityStaffHome();
                         }
                     }
-                } else
+                }else{
                     pbLogin.setVisibility(View.GONE);
                     btnLogin.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

@@ -78,13 +78,17 @@
                     android:gravity="right|center"
                     android:textSize="12dp">
                 </TextView>
-<!--                <TextView-->
-<!--                    android:layout_width="24dp"-->
-<!--                    android:layout_height="24dp"-->
-<!--                    android:background="@drawable/icon_add_20"-->
-<!--                    android:layout_gravity="center|right"-->
-<!--                    android:focusableInTouchMode="false">-->
-<!--                </TextView>-->
+                <TextView
+                    android:id="@+id/tv_openReviewActivity"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/icon_edit_note_18"
+                    android:layout_gravity="center|right"
+                    android:backgroundTint="@color/mainColor"
+                    android:focusableInTouchMode="false"
+                    android:visibility="gone">
+                </TextView>
             </LinearLayout>
         </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.example.testapp;
 
+import static com.example.testapp.function.Function.isValidPassword;
 import static com.example.testapp.function.Function.isValidPhoneNumber;
 import static com.example.testapp.function.Function.setRequired;
 
@@ -92,7 +93,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 etPhone.setError("SĐT bắt đầu bằng +84, đủ 10 số mới hợp lệ");
             }
         }
-
     }
 
     private void openActivityLogin() {

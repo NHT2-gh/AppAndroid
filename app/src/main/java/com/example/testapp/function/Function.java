@@ -46,6 +46,7 @@ public class Function {
 
     public static boolean isValidPassword(EditText password) {
         if (password.getText().toString().length() >= 6) {
+            password.setError("Mật khẩu phải trên 6 kí tự");
             return false;
         }
         return true;
